@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="GaSoft.Console/GaSoft.Console.csproj" />
+  <Project Path="GaSoft.Domain/GaSoft.Domain.csproj" />
+  <Project Path="GaSoft.EFCore/GaSoft.EFCore.csproj" />
+</Solution>
