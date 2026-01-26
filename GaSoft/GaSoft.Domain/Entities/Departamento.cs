@@ -3,8 +3,11 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace GaSoft.Domain.Entities;
 
+//[Table("Setores",Schema = "gasoft")]
 public class Departamento
 {
+
+    //[DatabaseGenerated(DatabaseGeneratedOption.None)] //faz n gerar id automaticamente
     public long Id { get; set; }
 
     //[Column("Nome_Departamento")]
@@ -15,6 +18,9 @@ public class Departamento
     //[Column(TypeName = "varchar(200)")]
     //[Required]
     public string? Descricao { get; set; }
+
+    //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
+    //public DateTime dataCriacao { get; set; }
 
 
     //(string?) -> as colunas na tabela vão permitir valores NULL
