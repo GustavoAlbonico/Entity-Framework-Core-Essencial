@@ -12,12 +12,17 @@ using (AppDbContext context = new AppDbContext())
     //CriarDepartamento(context);
     Console.WriteLine("Departamento criado...\n");
 
-    var departamentos = context.Departamentos.ToList();
+    //var departamentos = context.Departamentos.ToList();
 
-    foreach (var departamento in departamentos)
-    {
-        Console.WriteLine($"ID: {departamento.Id}, Nome: {departamento.Nome}");
-    }
+    //foreach (var departamento in departamentos)
+    //{
+    //    Console.WriteLine($"ID: {departamento.Id}, Nome: {departamento.Nome}");
+    //}
+
+    //FirstOrDefault
+    //var departamento = context.Departamentos.FirstOrDefault(d => d.Id == 1);
+
+    //Console.WriteLine(departamento is not null ? $"ID: {departamento.Id}, Nome: {departamento.Nome}" : "Departamento não encontrado");
 }
 
 Console.ReadKey();
