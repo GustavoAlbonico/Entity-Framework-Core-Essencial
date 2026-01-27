@@ -8,9 +8,9 @@ using (AppDbContext context = new AppDbContext())
     Console.WriteLine("Criando o banco de dados... \n");
     context.Database.EnsureCreated();
 
-    Console.WriteLine("Criando um departamento...\n");
-    //CriarDepartamento(context);
-    Console.WriteLine("Departamento criado...\n");
+   //Console.WriteLine("Criando um departamento...\n");
+   //CriarDepartamento(context);
+   // Console.WriteLine("Departamento criado...\n");
 
     //var departamentos = context.Departamentos.ToList();
 
@@ -24,8 +24,6 @@ using (AppDbContext context = new AppDbContext())
 
     //Console.WriteLine(departamento is not null ? $"ID: {departamento.Id}, Nome: {departamento.Nome}" : "Departamento não encontrado");
 }
-
-Console.ReadKey();
 
 //void CriarDepartamento(AppDbContext context)
 //{

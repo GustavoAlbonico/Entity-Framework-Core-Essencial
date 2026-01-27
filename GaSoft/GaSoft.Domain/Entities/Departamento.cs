@@ -13,11 +13,13 @@ public class Departamento
     //[Column("Nome_Departamento")]
     //[MaxLength(100)]
     //[Column(TypeName = "nvarchar(100)")]
-    public string Nome { get; set; } = string.Empty;
+    public string? Nome { get; set; }
 
     //[Column(TypeName = "varchar(200)")]
     //[Required]
     public string? Descricao { get; set; }
+
+    public ICollection<Funcionario> Funcionarios { get; set; } = new List<Funcionario>();
 
     //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     //public DateTime dataCriacao { get; set; }

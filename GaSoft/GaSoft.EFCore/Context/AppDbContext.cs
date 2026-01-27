@@ -6,25 +6,27 @@ namespace GaSoft.EFCore.Context;
 public class AppDbContext : DbContext
 {
     public DbSet<Departamento> Departamentos { get; set; }
+    public DbSet<Funcionario> Funcionarios { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-        optionsBuilder.UseSqlServer(AppConfig.GetConnectionString());
+        optionsBuilder.UseSqlServer(AppConfig.GetConnectionString())
+                      .UseSnakeCaseNamingConvention();
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //modelBuilder.HasDefaultSchema("gasoft");
+
         modelBuilder.Entity<Departamento>(entity =>
         {
-            entity.ToTable("Setores");
 
-            entity.Property(e => e.Id)
-                  .ValueGeneratedNever();
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(100)
+                  .IsRequired();
 
-            //entity.Property(e => e.dataCriacao)
-            //      .ValueGeneratedOnAddOrUpdate()
-            //      .HasDefaultValueSql("GETDATE()");
+            entity.Property(e => e.Descricao)
+                  .HasMaxLength(200)
+                  .IsRequired();
 
             //seed
             entity.HasData(
@@ -34,6 +36,30 @@ public class AppDbContext : DbContext
             );
 
         });
+
+        modelBuilder.Entity<Funcionario>(entity =>
+        {
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(100)
+                  .IsRequired();
+
+            entity.Property(e => e.Cargo)
+                  .HasMaxLength(100)
+                  .IsRequired();
+
+            entity.Property(e => e.Salario)
+                  .HasPrecision(10, 2);
+
+        });
+
+
+
+        //modelBuilder.HasDefaultSchema("gasoft");
+        //            entity.ToTable("Setores");
+        //entity.Property(e => e.dataCriacao)
+        //      .ValueGeneratedOnAddOrUpdate()
+        //      .HasDefaultValueSql("GETDATE()");
+
 
         //modelBuilder.Entity<Departamento>()
         //            .HasKey(d => d.Id);
