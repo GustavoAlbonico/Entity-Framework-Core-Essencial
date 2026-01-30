@@ -1,5 +1,6 @@
 ﻿
 using GaSoft.Domain.Entities;
+using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
 
 using (AppDbContext context = new AppDbContext())
@@ -14,6 +15,7 @@ using (AppDbContext context = new AppDbContext())
     //Console.WriteLine("Criadno Departamento e Funcionario...\n");
     //IncluirFuncionarioAddRelacional(context);
     //IncluirFuncionarioAddRangeRelacional(context);
+    //IncluirFuncionarioEDetalhe(context);
 
 
     //Console.WriteLine("Criando um departamento...\n");
@@ -34,6 +36,36 @@ using (AppDbContext context = new AppDbContext())
 }
 
 Console.ReadKey();
+
+void IncluirFuncionarioEDetalhe(AppDbContext context)
+{
+    var detalheFuncionario1 = new FuncionarioDetalhe
+    {
+        EnderecoResidencial = "Rua Exemplo, 123",
+        DataNascimento = new DateTime(1985, 5, 10),
+        Celular = "1234567890",
+        Genero = Genero.Masculino,
+        Foto = "foto1.jpg",
+        EstadoCivil = EstadoCivil.Solteiro,
+        CPF = "123.456.789-00",
+        Nacionalidade = "Brasileiro",
+        Escolaridade = Escolaridade.Superior
+    };
+
+    var funcionario1 = new Funcionario
+    {
+        Nome = "Robertinho detalhhes",
+        Cargo = "Dev",
+        Salario = 3000m,
+        DataContratacao = new DateOnly(2024, 6, 7),
+        DepartamentoId = 5,
+        FuncionarioDetalhe = detalheFuncionario1,
+    };
+
+    context.Funcionarios.Add(funcionario1);
+    context.SaveChanges();
+}
+
 void IncluirFuncionario(AppDbContext context)
 {
     var funcionario = new Funcionario
