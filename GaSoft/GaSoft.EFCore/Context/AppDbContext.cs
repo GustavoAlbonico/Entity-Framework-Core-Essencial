@@ -11,6 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<FuncionarioDetalhe> FuncionarioDetalhes { get; set; }
     public DbSet<Projeto> Projetos { get; set; }
     public DbSet<FuncionarioProjeto> FuncionariosProjetos { get; set; }
+    public DbSet<Cliente> Clientes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -212,6 +213,29 @@ public class AppDbContext : DbContext
             //DateTime é do tipo struct e o enum com numero definidos tambem
             //nesse caso ele é automaticamente definido como not null
 
+        });
+
+        modelBuilder.Entity<Cliente>(entity =>
+        {
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(100)
+                  .IsRequired();
+
+            entity.Property(e => e.Email)
+                  .HasMaxLength(200)
+                  .IsRequired();
+
+            entity.Property(e => e.Telefone)
+                  .HasMaxLength(50)
+                  .IsRequired();
+
+            entity.HasData(
+                  new Cliente { Id = 1, Nome = "Grupo ABroad SA", Email = "abroad@email.com", Telefone = "55-11 9980-0099" },
+                  new Cliente { Id = 2, Nome = "Construtora ABC", Email = "abcconstru@email.com", Telefone = "55-31 8957-1022" },
+                  new Cliente { Id = 3, Nome = "EduFuture Corp.", Email = "edufuture@email.com", Telefone = "55-11 8750-4422" },
+                  new Cliente { Id = 4, Nome = "Tech Innovators Ltda", Email = "innovators@email.com", Telefone = "55-11 9950-9622" },
+                  new Cliente { Id = 5, Nome = "Health Solutions Inc.", Email = "healtsolutions@email.com", Telefone = "55-21 9852-9655" }
+                );
         });
 
         //modelBuilder.HasDefaultSchema("gasoft");
