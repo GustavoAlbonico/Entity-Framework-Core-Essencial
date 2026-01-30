@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace GaSoft.Domain.Entities;
+﻿namespace GaSoft.Domain.Entities;
 
 public  class Funcionario
 {
@@ -15,4 +9,7 @@ public  class Funcionario
     public DateOnly DataContratacao { get; set; }
     public int DepartamentoId { get; set; }
     public Departamento? Departamento { get; set; }
+    public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
+
+    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>(); 
 }

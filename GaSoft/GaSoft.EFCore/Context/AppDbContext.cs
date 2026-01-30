@@ -9,6 +9,9 @@ public class AppDbContext : DbContext
     public DbSet<Departamento> Departamentos { get; set; }
     public DbSet<Funcionario> Funcionarios { get; set; }
     public DbSet<FuncionarioDetalhe> FuncionarioDetalhes { get; set; }
+    public DbSet<Projeto> Projetos { get; set; }
+    public DbSet<FuncionarioProjeto> FuncionariosProjetos { get; set; }
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(AppConfig.GetConnectionString())
@@ -187,6 +190,29 @@ public class AppDbContext : DbContext
                  new FuncionarioDetalhe { Id = 45, FuncionarioId = 45, EnderecoResidencial = "Rua ADT, 501", DataNascimento = new DateTime(1988, 8, 20), Celular = "977776777", Genero = Genero.Masculino, Foto = "foto45.jpg", EstadoCivil = EstadoCivil.Solteiro, CPF = "00001111111", Nacionalidade = "Brasileiro", Escolaridade = Escolaridade.Tecnico }
             );
     });
+
+        modelBuilder.Entity<FuncionarioProjeto>(entity =>
+        {
+            entity.HasKey(e => new { e.FuncionarioId, e.ProjetoId });
+        });
+
+        modelBuilder.Entity<Projeto>(entity =>
+        {
+            entity.Property(e => e.Nome)
+                  .HasMaxLength(100)
+                  .IsRequired();
+
+            entity.Property(e => e.Descricao)
+                  .HasMaxLength(200)
+                  .IsRequired();
+
+            entity.Property(e => e.Orcamento)
+                  .HasPrecision(20, 2);
+
+            //DateTime é do tipo struct e o enum com numero definidos tambem
+            //nesse caso ele é automaticamente definido como not null
+
+        });
 
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");
