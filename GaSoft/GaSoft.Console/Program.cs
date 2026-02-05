@@ -16,6 +16,11 @@ var departamentos = _context.Departamentos
                             .ThenInclude(f => f.FuncionarioDetalhe)
                             .ToList();
 
+//LAZY LOADING com proxies
+//nesse caso está gerando o problema n+1 se eu querer acessar funcionarios.
+var departamentos1 = _context.Departamentos
+                            .ToList();
+
 
 Console.ReadKey();
 

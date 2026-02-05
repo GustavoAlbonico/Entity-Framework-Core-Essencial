@@ -19,7 +19,7 @@ public class Departamento
     //[Required]
     public string? Descricao { get; set; }
 
-    public ICollection<Funcionario> Funcionarios { get; set; } = new List<Funcionario>();
+    public virtual ICollection<Funcionario> Funcionarios { get; set; } = new List<Funcionario>();
 
     //[DatabaseGenerated(DatabaseGeneratedOption.Computed)]
     //public DateTime dataCriacao { get; set; }

@@ -15,8 +15,8 @@ public class Projeto
 
     public StatusProjeto Status {  get; set; }
 
-    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
+    public virtual ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
 
     public int ClienteId { get; set; }
-    public Cliente? Cliente { get; set; }
+    public virtual Cliente? Cliente { get; set; }
 }

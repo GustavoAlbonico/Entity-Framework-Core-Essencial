@@ -16,7 +16,11 @@ public class AppDbContext : DbContext
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(AppConfig.GetConnectionString())
-                      .UseSnakeCaseNamingConvention();
+                      .UseSnakeCaseNamingConvention()
+                      .UseLazyLoadingProxies()
+                      .LogTo(Console.WriteLine,
+                        new[] { DbLoggerCategory.Database.Command.Name },
+                        Microsoft.Extensions.Logging.LogLevel.Information);
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

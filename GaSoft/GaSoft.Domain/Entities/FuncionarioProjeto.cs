@@ -6,7 +6,7 @@ public class FuncionarioProjeto
     public Funcionario? Funcionario { get; set; }
 
     public int ProjetoId { get; set; }
-    public Projeto? Projeto { get; set; }
+    public virtual Projeto? Projeto { get; set; }
 
     public int HorasTrabalhadas { get; set; }
 }
