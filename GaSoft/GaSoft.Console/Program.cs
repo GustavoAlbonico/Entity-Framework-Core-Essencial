@@ -2,38 +2,20 @@
 using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
+using Microsoft.EntityFrameworkCore;
 
-using (AppDbContext context = new AppDbContext())
-{
-    context.Database.EnsureDeleted();
-    Console.WriteLine("Criando o banco de dados... \n");
-    context.Database.EnsureCreated();
+using AppDbContext _context = new AppDbContext();
 
-    //Console.WriteLine("Criando um Funcionario...\n");
-    //IncluirFuncionario(context);
-    //IncluirFuncionarioAddRange(context);
-    //Console.WriteLine("Criadno Departamento e Funcionario...\n");
-    //IncluirFuncionarioAddRelacional(context);
-    //IncluirFuncionarioAddRangeRelacional(context);
-    //IncluirFuncionarioEDetalhe(context);
+_context.Database.EnsureDeleted();
+Console.WriteLine("Criando o banco de dados... \n");
+_context.Database.EnsureCreated();
 
+//EAGER LOADING
+var departamentos = _context.Departamentos
+                            .Include(d => d.Funcionarios)
+                            .ThenInclude(f => f.FuncionarioDetalhe)
+                            .ToList();
 
-    //Console.WriteLine("Criando um departamento...\n");
-    //CriarDepartamento(context);
-    // Console.WriteLine("Departamento criado...\n");
-
-    //var departamentos = context.Departamentos.ToList();
-
-    //foreach (var departamento in departamentos)
-    //{
-    //    Console.WriteLine($"ID: {departamento.Id}, Nome: {departamento.Nome}");
-    //}
-
-    //FirstOrDefault
-    //var departamento = context.Departamentos.FirstOrDefault(d => d.Id == 1);
-
-    //Console.WriteLine(departamento is not null ? $"ID: {departamento.Id}, Nome: {departamento.Nome}" : "Departamento não encontrado");
-}
 
 Console.ReadKey();
 
