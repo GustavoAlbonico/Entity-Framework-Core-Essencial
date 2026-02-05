@@ -8,8 +8,8 @@ public  class Funcionario
     public decimal Salario { get; set; }
     public DateOnly DataContratacao { get; set; }
     public int DepartamentoId { get; set; }
-    public virtual Departamento? Departamento { get; set; }
-    public virtual FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
+    public Departamento? Departamento { get; set; }
+    public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
 
-    public virtual ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>(); 
+    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>(); 
 }

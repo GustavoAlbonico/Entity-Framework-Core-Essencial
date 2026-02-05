@@ -7,5 +7,5 @@ public class Cliente
     public string? Email { get; set; }
     public string? Telefone { get; set; }
 
-    public virtual ICollection<Projeto> Projetos { get; set; } = new List<Projeto>();
+    public ICollection<Projeto> Projetos { get; set; } = new List<Projeto>();
 }

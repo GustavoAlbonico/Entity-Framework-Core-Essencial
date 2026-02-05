@@ -21,6 +21,20 @@ var departamentos = _context.Departamentos
 var departamentos1 = _context.Departamentos
                             .ToList();
 
+//EXPLICIT LOADING
+var departamento = _context.Departamentos.FirstOrDefault(d => d.Id == 1);
+
+if(departamento != null)
+{
+    _context.Entry(departamento)
+            .Collection(d => d.Funcionarios)
+            .Load();
+
+    foreach (var funcionario in departamento.Funcionarios)
+    {
+
+    }
+}
 
 Console.ReadKey();
 

@@ -15,5 +15,5 @@ public class FuncionarioDetalhe
     public string? Nacionalidade { get; set; }
     public Escolaridade? Escolaridade { get; set; }
     public int FuncionarioId { get; set; }
-    public virtual Funcionario? Funcionario { get; set; }
+    public Funcionario? Funcionario { get; set; }
 }
