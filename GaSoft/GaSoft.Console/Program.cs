@@ -36,6 +36,19 @@ if(departamento != null)
     }
 }
 
+//apenas valores chumbanos n pode ser dinamico
+//não é aplicado em joins
+var clientesAtivos = _context.Clientes.ToList(); //com query filter
+var clientes = _context.Clientes.IgnoreQueryFilters().ToList(); // sem query filter
+
+//Split query -> divide joins para otimizar e trazer menos dados repetidos
+var departamentos3 = _context.Departamentos
+                             .Include(d => d.Funcionarios)
+                             .AsSplitQuery()
+                             .ToList();
+
+
+
 Console.ReadKey();
 
 void IncluirFuncionarioEDetalhe(AppDbContext context)
