@@ -16,4 +16,7 @@ public class FuncionarioDetalhe
     public Escolaridade? Escolaridade { get; set; }
     public int FuncionarioId { get; set; }
     public Funcionario? Funcionario { get; set; }
+
 }
+
+

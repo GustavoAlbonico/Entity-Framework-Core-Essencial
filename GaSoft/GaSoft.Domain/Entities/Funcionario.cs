@@ -1,4 +1,6 @@
-﻿namespace GaSoft.Domain.Entities;
+﻿using System.Text;
+
+namespace GaSoft.Domain.Entities;
 
 public  class Funcionario
 {
@@ -11,5 +13,6 @@ public  class Funcionario
     public Departamento? Departamento { get; set; }
     public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
 
-    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>(); 
+    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
+
 }

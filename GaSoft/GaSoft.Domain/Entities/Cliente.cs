@@ -1,4 +1,6 @@
-﻿namespace GaSoft.Domain.Entities;
+﻿using System.Text;
+
+namespace GaSoft.Domain.Entities;
 
 public class Cliente
 {

@@ -3,13 +3,18 @@ using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
 using Microsoft.EntityFrameworkCore;
+using System.Text;
 
 using AppDbContext _context = new AppDbContext();
 
-_context.Database.EnsureDeleted();
-Console.WriteLine("Criando o banco de dados... \n");
-_context.Database.EnsureCreated();
+//_context.Database.EnsureDeleted();
+//Console.WriteLine("Criando o banco de dados... \n");
+//_context.Database.EnsureCreated();
 
+//Exercicio1(_context);
+//Exercicio2(_context);
+
+/*
 //EAGER LOADING
 var departamentos = _context.Departamentos
                             .Include(d => d.Funcionarios)
@@ -45,8 +50,7 @@ var clientes = _context.Clientes.IgnoreQueryFilters().ToList(); // sem query fil
 var departamentos3 = _context.Departamentos
                              .Include(d => d.Funcionarios)
                              .AsSplitQuery()
-                             .ToList();
-
+                             .ToList();*/
 
 
 Console.ReadKey();
@@ -173,16 +177,77 @@ void IncluirFuncionarioAddRangeRelacional(AppDbContext context)
     context.SaveChanges();
 }
 
-//void CriarDepartamento(AppDbContext context)
-//{
-//    var departamentos = new List<Departamento>
-//    {
-//        new Departamento { Nome = "Financeiro", Descricao = "Desenvolvimento de projetos"},
-//        new Departamento { Nome = "Marketing", Descricao = "Promoção de produtos"},
-//        new Departamento { Nome = "RH", Descricao = "Recursos Humanos"},
-//    };
+void CriarDepartamento(AppDbContext context)
+{
+    var departamentos = new List<Departamento>
+    {
+        new Departamento { Nome = "Financeiro", Descricao = "Desenvolvimento de projetos"},
+        new Departamento { Nome = "Marketing", Descricao = "Promoção de produtos"},
+        new Departamento { Nome = "RH", Descricao = "Recursos Humanos"},
+    };
 
-//    context.Departamento.AddRange(departamentos);
-//    context.SaveChanges();
-//}
+    context.Departamentos.AddRange(departamentos);
+    context.SaveChanges();
+}
+
+void Exercicio1(AppDbContext context)
+{
+
+    var funcionarios = context.Funcionarios.Where(f => f.Salario > 5000 && f.FuncionarioDetalhe.Genero == Genero.Masculino)
+                                           .Include(f => f.FuncionarioDetalhe)
+                                           .Include(f => f.Departamento)
+                                           .Include(f => f.FuncionariosProjetos
+                                            .Where(fp => fp.HorasTrabalhadas > 100))
+                                           .ThenInclude(fp => fp.Projeto)
+                                           .ToList();
+
+    Console.WriteLine("----------------------------- Execercicio 1 -----------------------------");
+
+
+
+
+    foreach (var funcionario in funcionarios)
+    {
+        var projetos = new StringBuilder();
+
+        foreach (var projeto in funcionario.FuncionariosProjetos)
+            projetos.Append($"\n\t\t Nome:{projeto.Projeto.Nome} Horas Trabalhadas:{projeto.HorasTrabalhadas}");
+
+        Console.WriteLine($"Nome:{funcionario.Nome} Salario:{funcionario.Salario} Genero:{funcionario.FuncionarioDetalhe.Genero} \n\t Departamento:{funcionario.Departamento?.Nome} \n\tProjeto:{projetos} \n");
+    }
+       
+}
+
+void Exercicio2(AppDbContext context)
+{
+
+    var funcionarios = context.Funcionarios.OrderBy(f => f.Nome)
+                                           .Skip(10)
+                                           .Take(5)
+                                           .Select(f => new
+                                           {
+                                               NomeFuncionario = f.Nome,
+                                               NomeDepartamento = f.Departamento.Nome,
+                                               TotalHorasTrabalhadasProjetos = f.FuncionariosProjetos.Sum(fp => fp.HorasTrabalhadas)
+
+                                           })
+                                           .ToList();
+    Console.WriteLine("----------------------------- Execercicio 2 -----------------------------");
+
+    foreach (var funcionario in funcionarios)
+    {
+        Console.WriteLine($"NomeFuncionario:{funcionario.NomeFuncionario} NomeDepartamento:{funcionario.NomeDepartamento} TotalHorasTrabalhadas:{funcionario.TotalHorasTrabalhadasProjetos} \n");
+    }
+}
+
+void Exercicio3(AppDbContext context)
+{
+    
+    var departamentos = context.Departamentos.Include(d =>
+        d.Funcionarios.Where(f => f.DataContratacao >= DateOnly.FromDateTime(DateTime.Today).AddMonths(-6))
+    );
+
+    Console.WriteLine("----------------------------- Execercicio 3 -----------------------------");
+}
+
 

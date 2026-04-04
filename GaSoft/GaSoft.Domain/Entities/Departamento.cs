@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Text;
 
 namespace GaSoft.Domain.Entities;
 
@@ -8,7 +9,7 @@ public class Departamento
 {
 
     //[DatabaseGenerated(DatabaseGeneratedOption.None)] //faz n gerar id automaticamente
-    public long Id { get; set; }
+    public int Id { get; set; }
 
     //[Column("Nome_Departamento")]
     //[MaxLength(100)]
@@ -28,4 +29,6 @@ public class Departamento
     //(string?) -> as colunas na tabela vão permitir valores NULL
     //(string.Empty) -> as colunas na tabela são criadas como NOT NULL
     //usar um cronstrutor para inicializar as propriedades -> as colunas na tabela são criadas como NOT NULL
+
+
 }
