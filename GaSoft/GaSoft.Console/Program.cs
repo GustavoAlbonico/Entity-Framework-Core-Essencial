@@ -13,6 +13,9 @@ using AppDbContext _context = new AppDbContext();
 
 //Exercicio1(_context);
 //Exercicio2(_context);
+//Exercicio3(_context);
+Exercicio5(_context);
+
 
 /*
 //EAGER LOADING
@@ -242,12 +245,64 @@ void Exercicio2(AppDbContext context)
 
 void Exercicio3(AppDbContext context)
 {
-    
+  
     var departamentos = context.Departamentos.Include(d =>
-        d.Funcionarios.Where(f => f.DataContratacao >= DateOnly.FromDateTime(DateTime.Today).AddMonths(-6))
-    );
+        d.Funcionarios.Where(
+            f => f.DataContratacao >= DateOnly.FromDateTime(new DateTime(2023, 8, 1)).AddMonths(-6)
+        )
+    )
+    .Select(departamento => new {
+        Nome = departamento.Nome,
+        Funcionarios = departamento.Funcionarios,
+        ValorTotalSalario = departamento.Funcionarios.Sum(funcionario => funcionario.Salario)
+    })
+    .ToList();
 
     Console.WriteLine("----------------------------- Execercicio 3 -----------------------------");
+
+    foreach (var departamento in departamentos)
+    {
+        var funcionariosString = new StringBuilder("");
+        foreach (var funcionario in departamento.Funcionarios)
+        {
+            funcionariosString.AppendLine($"\t\tNome:{funcionario.Nome} Contratação:{funcionario.DataContratacao.ToString("dd/MM/yyyy")}");
+        }
+
+        Console.WriteLine($"\nDepartamento:\n\tNome:{departamento.Nome}\n\tValor Salário Gasto:{departamento.ValorTotalSalario:C}\n\tFuncionarios:\n{funcionariosString}");
+    }
+
+
 }
 
+void Exercicio5(AppDbContext context)
+{
 
+    var funcionarios = context.Funcionarios
+        .Include(funcionario => funcionario.FuncionariosProjetos)
+            .ThenInclude(funcionarioProjeto => funcionarioProjeto.Projeto)
+                 .ThenInclude(projeto => projeto.Cliente)
+        .Select(funcionario => new {
+            NomeFuncionario = funcionario.Nome,
+            Projetos = funcionario.FuncionariosProjetos.Select(fp => new
+            {
+                NomeProjeto = fp.Projeto.Nome,
+                NomeCliente = fp.Projeto.Cliente.Nome
+            })
+        })
+        .ToList();
+
+
+    foreach(var funcionario in funcionarios)
+    {
+        var projetos = new StringBuilder("");
+
+        foreach(var projeto in funcionario.Projetos)
+        {
+            projetos.AppendLine($"\t\tProjeto:{projeto.NomeProjeto}\n\t\tCiente:{projeto.NomeCliente}\n");
+        }
+
+        Console.WriteLine($"\nFuncionario:\n\tNome:{funcionario.NomeFuncionario}\n\tProjetos:\n{projetos}");
+    }
+
+    Console.WriteLine("----------------------------- Execercicio 5 -----------------------------");
+}
