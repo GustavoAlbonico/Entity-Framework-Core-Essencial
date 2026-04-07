@@ -14,7 +14,8 @@ using AppDbContext _context = new AppDbContext();
 //Exercicio1(_context);
 //Exercicio2(_context);
 //Exercicio3(_context);
-Exercicio5(_context);
+//Exercicio5(_context);
+//Exercicio6(_context);
 
 
 /*
@@ -305,4 +306,36 @@ void Exercicio5(AppDbContext context)
     }
 
     Console.WriteLine("----------------------------- Execercicio 5 -----------------------------");
+}
+
+void Exercicio6(AppDbContext context)
+{
+    var funcionario = context.Funcionarios.FirstOrDefault(f => f.Id == 19);
+
+
+    context.Entry(funcionario)
+           .Reference(f => f.Departamento)
+           .Load();
+
+    context.Entry(funcionario)
+          .Reference(f => f.FuncionarioDetalhe)
+          .Load();
+
+    context.Entry(funcionario)
+          .Collection(f => f.FuncionariosProjetos)
+          .Query()
+          .Include(fp => fp.Projeto)
+          .Load();
+
+    Console.WriteLine($"Funcionário: {funcionario.Nome}");
+    Console.WriteLine($"Departamento: {funcionario.Departamento?.Nome}");
+    Console.WriteLine($"Endereço Residencial: {funcionario.FuncionarioDetalhe?.EnderecoResidencial}");
+    Console.WriteLine("Projetos:");
+
+    foreach (var projeto in funcionario.FuncionariosProjetos)
+    {
+        Console.WriteLine($"\tProjeto: {projeto.Projeto.Nome}, Horas Trabalhadas: {projeto.HorasTrabalhadas}");
+    }
+
+    Console.WriteLine("----------------------------- Execercicio 6 -----------------------------");
 }
