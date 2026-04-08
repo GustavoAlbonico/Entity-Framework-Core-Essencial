@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="Ex2.Console/Ex2.Console.csproj" />
+  <Project Path="Ex2.Domain/Ex2.Domain.csproj" />
+  <Project Path="Ex2.EFCore/Ex2.EFCore.csproj" />
+</Solution>

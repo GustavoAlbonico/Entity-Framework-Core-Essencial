@@ -17,7 +17,6 @@ using AppDbContext _context = new AppDbContext();
 //Exercicio5(_context);
 //Exercicio6(_context);
 
-
 /*
 //EAGER LOADING
 var departamentos = _context.Departamentos
