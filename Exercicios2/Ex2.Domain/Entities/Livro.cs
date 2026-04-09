@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ex2.Domain.Entities.Enum;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,7 @@ public class Livro
     public string Titulo { get; set; }
     public bool IsDeleted { get; set; }
     public DateTime DataPublicacao { get; set; }
-    pu
+    
+    public Status Status { get; set; }
 
 }
