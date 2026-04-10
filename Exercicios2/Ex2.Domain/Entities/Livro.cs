@@ -13,7 +13,6 @@ public class Livro
     public string Titulo { get; set; }
     public bool IsDeleted { get; set; }
     public DateTime DataPublicacao { get; set; }
-    
     public Status Status { get; set; }
 
 }
