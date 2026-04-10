@@ -1,0 +1,46 @@
+Exercícios práticos – Consultando dados com EF Core
+1- Exercício Prático
+Contexto: Você está desenvolvendo um sistema de biblioteca com os seguintes requisitos:
+1. Livros devem ter "soft delete" (IsDeleted)
+2. Apenas livros publicados após 2020 devem ser visíveis
+3. Livros com status "Em Revisão" não devem aparecer nas consultas normais
+Modelo:
+public class Livro
+{
+ public int Id { get; set; }
+ public string Titulo { get; set; }
+ public bool IsDeleted { get; set; }
+ public DateTime DataPublicacao { get; set; }
+ public string Status { get; set; } // "Disponível", "Emprestado", "Em Revisão"
+}
+Tarefas:
+1. Configure os filtros globais no DbContext conforme os requisitos
+2. Escreva uma consulta que lista todos os livros visíveis
+3. Escreva uma consulta especial para administradores que ignora os filtros
+4. Implemente um método para "emprestar" um livro (mudar status para "Emprestado")
+5. Crie um método para "excluir" logicamente um livro
+Exercícios práticos – Consultando dados com EF Core
+2 - Exercício Prático:
+Considere o seguinte modelo de entidades:
+public class Curso
+{
+ public int Id { get; set; }
+ public string Nome { get; set; }
+ public List<Aluno> Alunos { get; set; }
+ public Professor Coordenador { get; set; }
+}
+public class Aluno
+{
+ public int Id { get; set; }
+ public string Nome { get; set; }
+}
+public class Professor
+{
+ public int Id { get; set; }
+ public string Nome { get; set; }
+}
+Enunciado:
+Você precisa consultar todos os Cursos trazendo também seus Alunos e o Coordenador.
+Para evitar o problema conhecido como Cartesian Explosion (repetição excessiva de dados por
+causa de muitos joins), utilize o recurso de Split Queries.
+Escreva o trecho de código que realiza essa consulta corretamente no EF Core 9.0.
