@@ -12,6 +12,9 @@ namespace Ex2.EFCore.Context;
 public class AppDbContext : DbContext
 {
     public DbSet<Livro> Livros { get; set; }
+    public DbSet<Professor> Professores { get; set; }
+    public DbSet<Aluno> Alunos { get; set; }
+    public DbSet<Curso> Cursos { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -70,6 +73,34 @@ public class AppDbContext : DbContext
                 new Livro { Id = 20, Titulo = "O despertar", DataPublicacao = new DateTime(2021, 7, 7), Status = Status.Emprestado, IsDeleted = false },
                 new Livro { Id = 21, Titulo = "Ventos do norte", DataPublicacao = new DateTime(2020, 9, 3), Status = Status.EmRevisao, IsDeleted = false }
             );
+        });
+
+        modelBuilder.Entity<Aluno>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Nome)
+            .HasMaxLength(255)
+            .IsRequired();
+
+        });
+
+        modelBuilder.Entity<Professor>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Nome)
+            .HasMaxLength(255)
+            .IsRequired();
+        });
+
+        modelBuilder.Entity<Curso>(entity =>
+        {
+            entity.HasKey(e => e.Id);
+
+            entity.Property(e => e.Nome)
+            .HasMaxLength(255)
+            .IsRequired();
         });
     }
 }
