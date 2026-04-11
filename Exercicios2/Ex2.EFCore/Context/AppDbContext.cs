@@ -33,17 +33,17 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Titulo)
-            .HasMaxLength(255)
-            .IsRequired();
+                  .HasMaxLength(255)
+                  .IsRequired();
 
             entity.Property(e => e.DataPublicacao)
-            .IsRequired();
+                  .IsRequired();
 
             entity.Property(e => e.IsDeleted)
-            .IsRequired();
+                  .IsRequired();
 
             entity.Property(e => e.Status)
-            .IsRequired();
+                  .IsRequired();
 
             entity.HasQueryFilter(
                 e => e.DataPublicacao > new DateTime(2020, 12, 31) &&
@@ -80,8 +80,50 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Nome)
-            .HasMaxLength(255)
-            .IsRequired();
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.HasOne(e => e.Curso)
+                  .WithMany(e => e.Alunos)
+                  .HasForeignKey(e => e.CursoId);
+
+            entity.HasData(
+                // Curso 1 (10 alunos)
+                new Aluno { Id = 1, Nome = "Aluno 1", CursoId = 1 },
+                new Aluno { Id = 2, Nome = "Aluno 2", CursoId = 1 },
+                new Aluno { Id = 3, Nome = "Aluno 3", CursoId = 1 },
+                new Aluno { Id = 4, Nome = "Aluno 4", CursoId = 1 },
+                new Aluno { Id = 5, Nome = "Aluno 5", CursoId = 1 },
+                new Aluno { Id = 6, Nome = "Aluno 6", CursoId = 1 },
+                new Aluno { Id = 7, Nome = "Aluno 7", CursoId = 1 },
+                new Aluno { Id = 8, Nome = "Aluno 8", CursoId = 1 },
+                new Aluno { Id = 9, Nome = "Aluno 9", CursoId = 1 },
+                new Aluno { Id = 10, Nome = "Aluno 10", CursoId = 1 },
+
+                // Curso 2 (10 alunos)
+                new Aluno { Id = 11, Nome = "Aluno 11", CursoId = 2 },
+                new Aluno { Id = 12, Nome = "Aluno 12", CursoId = 2 },
+                new Aluno { Id = 13, Nome = "Aluno 13", CursoId = 2 },
+                new Aluno { Id = 14, Nome = "Aluno 14", CursoId = 2 },
+                new Aluno { Id = 15, Nome = "Aluno 15", CursoId = 2 },
+                new Aluno { Id = 16, Nome = "Aluno 16", CursoId = 2 },
+                new Aluno { Id = 17, Nome = "Aluno 17", CursoId = 2 },
+                new Aluno { Id = 18, Nome = "Aluno 18", CursoId = 2 },
+                new Aluno { Id = 19, Nome = "Aluno 19", CursoId = 2 },
+                new Aluno { Id = 20, Nome = "Aluno 20", CursoId = 2 },
+
+                // Curso 3 (10 alunos)
+                new Aluno { Id = 21, Nome = "Aluno 21", CursoId = 3 },
+                new Aluno { Id = 22, Nome = "Aluno 22", CursoId = 3 },
+                new Aluno { Id = 23, Nome = "Aluno 23", CursoId = 3 },
+                new Aluno { Id = 24, Nome = "Aluno 24", CursoId = 3 },
+                new Aluno { Id = 25, Nome = "Aluno 25", CursoId = 3 },
+                new Aluno { Id = 26, Nome = "Aluno 26", CursoId = 3 },
+                new Aluno { Id = 27, Nome = "Aluno 27", CursoId = 3 },
+                new Aluno { Id = 28, Nome = "Aluno 28", CursoId = 3 },
+                new Aluno { Id = 29, Nome = "Aluno 29", CursoId = 3 },
+                new Aluno { Id = 30, Nome = "Aluno 30", CursoId = 3 }
+            );
 
         });
 
@@ -90,8 +132,16 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Nome)
-            .HasMaxLength(255)
-            .IsRequired();
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.HasData(
+                new Professor { Id = 1, Nome = "Professor 1" },
+                new Professor { Id = 2, Nome = "Professor 2" },
+                new Professor { Id = 3, Nome = "Professor 3" },
+                new Professor { Id = 4, Nome = "Professor 4" },
+                new Professor { Id = 5, Nome = "Professor 5" }
+            );
         });
 
         modelBuilder.Entity<Curso>(entity =>
@@ -99,8 +149,23 @@ public class AppDbContext : DbContext
             entity.HasKey(e => e.Id);
 
             entity.Property(e => e.Nome)
-            .HasMaxLength(255)
-            .IsRequired();
+                  .HasMaxLength(255)
+                  .IsRequired();
+
+            entity.HasOne(e => e.Coordenador)
+                  .WithOne(e => e.Curso)
+                  .HasForeignKey<Curso>(c => c.CoordenadorId)
+                  .IsRequired()
+                  .OnDelete(DeleteBehavior.Restrict);
+
+            entity.HasIndex(c => c.CoordenadorId)
+                  .IsUnique();
+
+            entity.HasData(
+                new Curso { Id = 1, Nome = "Curso 1", CoordenadorId = 1 },
+                new Curso { Id = 2, Nome = "Curso 2", CoordenadorId = 2 },
+                new Curso { Id = 3, Nome = "Curso 3", CoordenadorId = 3 }
+            );
         });
     }
 }

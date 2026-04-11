@@ -5,17 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 using AppDbContext _context = new AppDbContext();
 
-_context.Database.EnsureDeleted();
-Console.WriteLine("Criando banco de dados....\n\n");
-_context.Database.EnsureCreated();
+//_context.Database.EnsureDeleted();
+//Console.WriteLine("Criando banco de dados....\n\n");
+//_context.Database.EnsureCreated();
 
-getLivros(_context);
-getLivrosAdmin(_context);
-putLivroStatus(_context, 6, Status.Emprestado);
-getLivro(_context, 6);
-deleteLivro(_context, 6);
-getLivro(_context, 6);
-getLivros(_context);
+//EX01 PARTE2
+
+//getLivros(_context);
+//getLivrosAdmin(_context);
+//putLivroStatus(_context, 6, Status.Emprestado);
+//getLivro(_context, 6);
+//deleteLivro(_context, 6);
+//getLivro(_context, 6);
+//getLivros(_context);
+
+//EX02 PARTE2
+
+//getCursosSplitQuery(_context);
+
 
 Console.ReadKey();
 
@@ -92,5 +99,19 @@ void deleteLivro(AppDbContext context, int id)
     } else
     {
         Console.WriteLine("Livro não encontrado!");
+    }
+}
+
+void getCursosSplitQuery(AppDbContext context)
+{
+
+    var cursos = context.Cursos.Include(c => c.Coordenador)
+                  .Include(c => c.Alunos)
+                  .AsSplitQuery()
+                  .ToList();
+
+    foreach (var curso in cursos)
+    {
+        Console.WriteLine($"{curso.Nome}\n\t Coordenador:{curso.Coordenador?.Nome}\n\tAlunos:{curso.Alunos}");
     }
 }
