@@ -53,7 +53,15 @@ var clientes = _context.Clientes.IgnoreQueryFilters().ToList(); // sem query fil
 var departamentos3 = _context.Departamentos
                              .Include(d => d.Funcionarios)
                              .AsSplitQuery()
-                             .ToList();*/
+                             .ToList();
+
+//AsNoTrackingWithIdentityResolution -> utiliza identity resolution porém sem change tracker
+var departamentos3 = _context.Projetos
+                             .AsNoTrackingWithIdentityResolution()
+                             .Include(p => p.Cliente)
+                             .ToList();
+
+*/
 
 
 Console.ReadKey();
@@ -337,4 +345,84 @@ void Exercicio6(AppDbContext context)
     }
 
     Console.WriteLine("----------------------------- Execercicio 6 -----------------------------");
+}
+
+
+void MudancasEstado(AppDbContext context)
+{
+    // 1. Criando uma nova entidade
+    var novoCliente = new Cliente
+    {
+        Nome = "João Silva",
+        Email = "joao@email.com",
+        Telefone = "99999-9999",
+        Ativo = true
+    };
+
+    Console.WriteLine($"Estado Inicial: {context.Entry(novoCliente).State}");
+
+    // 2. Adicionando a entidade
+    context.Clientes.Add(novoCliente); // Estado: Added
+    Console.WriteLine($"Estado antes de SaveChanges(): {context.Entry(novoCliente).State}");
+
+    // 3. Chamando SaveChanges
+    context.SaveChanges(); // Salva no banco
+    Console.WriteLine($"Estado após SaveChanges(): {context.Entry(novoCliente).State}");
+
+    // 4. Modificando a entidade
+    novoCliente.Nome = "João da Silva"; // Estado: Modified
+    Console.WriteLine($"Estado após modificação: {context.Entry(novoCliente).State}");
+
+}
+
+void MudancasEstadoDesconectado()
+{
+    // 1. Criando a entidade
+    var novoCliente = new Cliente
+    {
+        Nome = "Maria Souza",
+        Email = "maria@email.com",
+        Telefone = "98888-7777",
+        Ativo = true
+    };
+
+    // 2. Primeiro contexto - INSERT
+    using (var context = new AppDbContext())
+    {
+        context.Clientes.Add(novoCliente);
+        Console.WriteLine($"Estado antes de SaveChanges(): {context.Entry(novoCliente).State}");
+
+        context.SaveChanges();
+        Console.WriteLine($"Estado após SaveChanges(): {context.Entry(novoCliente).State}");
+    }
+
+    // 3. Alterando fora do contexto
+    novoCliente.Nome = "Maria da Silva";
+
+    // 4. Segundo contexto - UPDATE (entidade desconectada)
+    using (var context = new AppDbContext())
+    {
+        context.Entry(novoCliente).State = EntityState.Modified;
+        Console.WriteLine($"Estado ao anexar e modificar: {context.Entry(novoCliente).State}");
+
+        context.SaveChanges();
+        Console.WriteLine($"Estado após SaveChanges(): {context.Entry(novoCliente).State}");
+    }
+
+    // 5. Terceiro contexto - DELETE (ou soft delete)
+    using (var context = new AppDbContext())
+    {
+        // HARD DELETE
+        context.Entry(novoCliente).State = EntityState.Deleted;
+
+        // SOFT DELETE (alternativa)
+        // novoCliente.Ativo = false;
+        // context.Entry(novoCliente).State = EntityState.Modified;
+
+        Console.WriteLine($"Estado ao anexar e marcar como Deleted: {context.Entry(novoCliente).State}");
+
+        context.SaveChanges();
+        Console.WriteLine($"Estado após exclusão: {context.Entry(novoCliente).State}");
+    }
+
 }
