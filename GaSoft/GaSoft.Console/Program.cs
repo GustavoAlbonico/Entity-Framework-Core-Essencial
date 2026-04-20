@@ -426,3 +426,21 @@ void MudancasEstadoDesconectado()
     }
 
 }
+
+void Execute(AppDbContext context)
+{
+
+    Console.WriteLine("Execute UPDATE");
+
+    context.Funcionarios
+        .Where(f => f.Departamento!.Nome == "TI" && f.Cargo == "programador junior")
+        .ExecuteUpdate(s => s
+        .SetProperty(b => b.Cargo, "Progamador Pleno")
+        .SetProperty(b => b.Salario, b => b.Salario * 1.15m));
+
+    Console.WriteLine("Execute DELETE");
+
+    context.Funcionarios.Where(f => f.DepartamentoId == 2)
+           .ExecuteDelete();
+
+}
