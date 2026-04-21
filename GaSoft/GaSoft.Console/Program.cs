@@ -66,6 +66,7 @@ var departamentos3 = _context.Projetos
 
 Console.ReadKey();
 
+/*
 void IncluirFuncionarioEDetalhe(AppDbContext context)
 {
     var detalheFuncionario1 = new FuncionarioDetalhe
@@ -444,3 +445,15 @@ void Execute(AppDbContext context)
            .ExecuteDelete();
 
 }
+
+void Migrations()
+{
+ 
+ // dotnet ef migrations add IncluiFuncionarioEDetalhe --project GaSoft.EFCore --startup-project GaSoft.Console
+
+ // dotnet ef database update --project GaSoft.EFCore --startup-project GaSoft.Console
+
+ // --verbose -> debug
+}
+
+*/

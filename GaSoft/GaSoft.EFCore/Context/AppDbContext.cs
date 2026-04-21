@@ -11,7 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<FuncionarioDetalhe> FuncionarioDetalhes { get; set; }
     public DbSet<Projeto> Projetos { get; set; }
     public DbSet<FuncionarioProjeto> FuncionariosProjetos { get; set; }
-    public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<Cliente> Clientes { get; set; } 
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -240,6 +240,7 @@ public class AppDbContext : DbContext
             );
     });
 
+       
         modelBuilder.Entity<Projeto>(entity =>
         {
             entity.Property(e => e.Nome)
@@ -392,6 +393,7 @@ public class AppDbContext : DbContext
             );
 
         });
+
 
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");
