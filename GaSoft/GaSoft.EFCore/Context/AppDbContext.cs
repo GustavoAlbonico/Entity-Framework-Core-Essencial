@@ -11,7 +11,7 @@ public class AppDbContext : DbContext
     public DbSet<FuncionarioDetalhe> FuncionarioDetalhes { get; set; }
     public DbSet<Projeto> Projetos { get; set; }
     public DbSet<FuncionarioProjeto> FuncionariosProjetos { get; set; }
-    public DbSet<Cliente> Clientes { get; set; } 
+    public DbSet<Cliente> Clientes { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
@@ -23,6 +23,7 @@ public class AppDbContext : DbContext
                         new[] { DbLoggerCategory.Database.Command.Name },
                         Microsoft.Extensions.Logging.LogLevel.Information);
     }
+
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -37,8 +38,7 @@ public class AppDbContext : DbContext
             entity.Property(e => e.Descricao)
                   .HasMaxLength(200)
                   .IsRequired();
-
-            //seed
+            
             entity.HasData(
                   new Departamento { Id = 1, Nome = "Financeiro", Descricao = "Gestão das finanças" },
                   new Departamento { Id = 2, Nome = "Marketing", Descricao = "Promoção de produtos" },
@@ -64,64 +64,64 @@ public class AppDbContext : DbContext
                   .HasPrecision(10, 2);
 
             entity.HasData(
-               // Funcionários do Financeiro
-               new Funcionario { Id = 1, Nome = "João da Silva", Cargo = "Gerente de Finanças", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 1, 15), DepartamentoId = 1 },
-               new Funcionario { Id = 2, Nome = "Carlos Pereira", Cargo = "Analista Financeiro", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 1 },
-               new Funcionario { Id = 3, Nome = "Ana Souza", Cargo = "Analista Financeiro", Salario = 4300.00m, DataContratacao = new DateOnly(2022, 2, 15), DepartamentoId = 1 },
-               new Funcionario { Id = 4, Nome = "Fernanda Oliveira", Cargo = "Técnico em Contabilidade", Salario = 3400.00m, DataContratacao = new DateOnly(2023, 4, 5), DepartamentoId = 1 },
-               new Funcionario { Id = 5, Nome = "José Santos", Cargo = "Técnico em Contabilidade", Salario = 3400.00m, DataContratacao = new DateOnly(2023, 7, 18), DepartamentoId = 1 },
+                  // Funcionários do Financeiro
+                  new Funcionario { Id = 1, Nome = "João da Silva", Cargo = "Gerente de Finanças", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 1, 15), DepartamentoId = 1 },
+                  new Funcionario { Id = 2, Nome = "Carlos Pereira", Cargo = "Analista Financeiro", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 1 },
+                  new Funcionario { Id = 3, Nome = "Ana Souza", Cargo = "Analista Financeiro", Salario = 4300.00m, DataContratacao = new DateOnly(2022, 2, 15), DepartamentoId = 1 },
+                  new Funcionario { Id = 4, Nome = "Fernanda Oliveira", Cargo = "Técnico em Contabilidade", Salario = 3400.00m, DataContratacao = new DateOnly(2023, 4, 5), DepartamentoId = 1 },
+                  new Funcionario { Id = 5, Nome = "José Santos", Cargo = "Técnico em Contabilidade", Salario = 3400.00m, DataContratacao = new DateOnly(2023, 7, 18), DepartamentoId = 1 },
 
-               // Funcionários do Marketing
-               new Funcionario { Id = 6, Nome = "Lucia Benitez", Cargo = "Analista de Marketing", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 2 },
-               new Funcionario { Id = 7, Nome = "Pedro Cardoso", Cargo = "Analista de Marketing", Salario = 4100.00m, DataContratacao = new DateOnly(2022, 8, 22), DepartamentoId = 2 },
-               new Funcionario { Id = 8, Nome = "Fabiana Costa", Cargo = "Gerente de Marketing", Salario = 5100.00m, DataContratacao = new DateOnly(2023, 3, 1), DepartamentoId = 2 },
+                  // Funcionários do Marketing
+                  new Funcionario { Id = 6, Nome = "Lucia Benitez", Cargo = "Analista de Marketing", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 2 },
+                  new Funcionario { Id = 7, Nome = "Pedro Cardoso", Cargo = "Analista de Marketing", Salario = 4100.00m, DataContratacao = new DateOnly(2022, 8, 22), DepartamentoId = 2 },
+                  new Funcionario { Id = 8, Nome = "Fabiana Costa", Cargo = "Gerente de Marketing", Salario = 5100.00m, DataContratacao = new DateOnly(2023, 3, 1), DepartamentoId = 2 },
 
-               // Funcionários do RH
-               new Funcionario { Id = 9, Nome = "Roberto Ferreira", Cargo = "Analista de Recursos Humanos", Salario = 3400.00m, DataContratacao = new DateOnly(2021, 9, 20), DepartamentoId = 3 },
-               new Funcionario { Id = 10, Nome = "Beatriz Almeida", Cargo = "Gerente de Recursos Humanos", Salario = 5000.00m, DataContratacao = new DateOnly(2022, 3, 10), DepartamentoId = 3 },
-               new Funcionario { Id = 11, Nome = "Mariana Dias", Cargo = "Analista de Recursos Humanos", Salario = 3000.00m, DataContratacao = new DateOnly(2023, 5, 5), DepartamentoId = 3 },
+                  // Funcionários do RH
+                  new Funcionario { Id = 9, Nome = "Roberto Ferreira", Cargo = "Analista de Recursos Humanos", Salario = 3400.00m, DataContratacao = new DateOnly(2021, 9, 20), DepartamentoId = 3 },
+                  new Funcionario { Id = 10, Nome = "Beatriz Almeida", Cargo = "Gerente de Recursos Humanos", Salario = 5000.00m, DataContratacao = new DateOnly(2022, 3, 10), DepartamentoId = 3 },
+                  new Funcionario { Id = 11, Nome = "Mariana Dias", Cargo = "Analista de Recursos Humanos", Salario = 3000.00m, DataContratacao = new DateOnly(2023, 5, 5), DepartamentoId = 3 },
 
-               // Funcionários do Suporte
-               new Funcionario { Id = 12, Nome = "Juliana Mendes", Cargo = "Analista de Suporte", Salario = 3200.00m, DataContratacao = new DateOnly(2022, 6, 15), DepartamentoId = 4 },
-               new Funcionario { Id = 13, Nome = "Rafael Souza", Cargo = "Gerente de Suporte", Salario = 5800.00m, DataContratacao = new DateOnly(2022, 8, 22), DepartamentoId = 4 },
-               new Funcionario { Id = 14, Nome = "Bruno Costa", Cargo = "Analista de Suporte", Salario = 4000.00m, DataContratacao = new DateOnly(2023, 1, 1), DepartamentoId = 4 },
-               new Funcionario { Id = 15, Nome = "Aline Dias", Cargo = "Analista de Suporte", Salario = 3900.00m, DataContratacao = new DateOnly(2023, 3, 10), DepartamentoId = 4 },
+                  // Funcionários do Suporte
+                  new Funcionario { Id = 12, Nome = "Juliana Mendes", Cargo = "Analista de Suporte", Salario = 3200.00m, DataContratacao = new DateOnly(2022, 6, 15), DepartamentoId = 4 },
+                  new Funcionario { Id = 13, Nome = "Rafael Souza", Cargo = "Gerente de Suporte", Salario = 5800.00m, DataContratacao = new DateOnly(2022, 8, 22), DepartamentoId = 4 },
+                  new Funcionario { Id = 14, Nome = "Bruno Costa", Cargo = "Analista de Suporte", Salario = 4000.00m, DataContratacao = new DateOnly(2023, 1, 1), DepartamentoId = 4 },
+                  new Funcionario { Id = 15, Nome = "Aline Dias", Cargo = "Analista de Suporte", Salario = 3900.00m, DataContratacao = new DateOnly(2023, 3, 10), DepartamentoId = 4 },
 
-               // Funcionários de TI
-               new Funcionario { Id = 16, Nome = "Felix Carvalho", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 17, Nome = "Gustavo Almeida", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 6, 5), DepartamentoId = 5 },
-               new Funcionario { Id = 18, Nome = "Renata Silva", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2021, 5, 18), DepartamentoId = 5 },
-               new Funcionario { Id = 19, Nome = "Thiago Souza", Cargo = "Gerente de TI", Salario = 6600.00m, DataContratacao = new DateOnly(2023, 4, 15), DepartamentoId = 5 },
-               new Funcionario { Id = 20, Nome = "Vanessa Oliveira", Cargo = "Engenheiro de Software", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 5, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 21, Nome = "Leandro Pereira", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
-               new Funcionario { Id = 22, Nome = "Fernando Carvalho", Cargo = "Programador Junior", Salario = 2500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 23, Nome = "Gilberto Almeida", Cargo = "Programador Junior", Salario = 2300.00m, DataContratacao = new DateOnly(2023, 3, 13), DepartamentoId = 5 },
-               new Funcionario { Id = 24, Nome = "Renata Silva", Cargo = "Programador Junior", Salario = 2800.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 5 },
-               new Funcionario { Id = 25, Nome = "Tamirez Souza", Cargo = "Programador Junior", Salario = 2600.00m, DataContratacao = new DateOnly(2023, 4, 5), DepartamentoId = 5 },
-               new Funcionario { Id = 26, Nome = "Vanessa Oliveira", Cargo = "Arquiteta de Software", Salario = 5000.00m, DataContratacao = new DateOnly(2023, 5, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 27, Nome = "Leonardo Pereira", Cargo = "Programador Senior", Salario = 5500.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
-               new Funcionario { Id = 28, Nome = "Maria Benitez", Cargo = "Programador Senior", Salario = 5100.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 29, Nome = "Ricardo Pereira", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 11), DepartamentoId = 5 },
-               new Funcionario { Id = 30, Nome = "Paula Santos", Cargo = "Programador Senior", Salario = 3200.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
-               new Funcionario { Id = 31, Nome = "Leonardo Pereira", Cargo = "Programador Senior", Salario = 4650.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
-               new Funcionario { Id = 32, Nome = "Maria Benitez", Cargo = "Arquiteto de Software", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 33, Nome = "Reinaldo Pedreira", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 34, Nome = "Helena Cintra", Cargo = "Programador Senior", Salario = 4600.00m, DataContratacao = new DateOnly(2022, 4, 20), DepartamentoId = 5 },
-               new Funcionario { Id = 35, Nome = "Carlos Santos", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 9, 20), DepartamentoId = 5 },
-               new Funcionario { Id = 36, Nome = "Leonardo Ramirez", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
-               new Funcionario { Id = 37, Nome = "Amanda Sanches", Cargo = "Engenheiro de Testes", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
-               new Funcionario { Id = 38, Nome = "Rodrigo Pereira", Cargo = "Engenheiro de Testes", Salario = 4800.00m, DataContratacao = new DateOnly(2023, 2, 5), DepartamentoId = 5 },
-               new Funcionario { Id = 39, Nome = "Alicia Santos", Cargo = "Engenheiro de Testes", Salario = 5300.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 5 },
-               new Funcionario { Id = 40, Nome = "Paulo Mellado", Cargo = "Arquiteto de Software", Salario = 5800.00m, DataContratacao = new DateOnly(2022, 6, 20), DepartamentoId = 5 },
+                  // Funcionários de TI
+                  new Funcionario { Id = 16, Nome = "Felix Carvalho", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 17, Nome = "Gustavo Almeida", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 6, 5), DepartamentoId = 5 },
+                  new Funcionario { Id = 18, Nome = "Renata Silva", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2021, 5, 18), DepartamentoId = 5 },
+                  new Funcionario { Id = 19, Nome = "Thiago Souza", Cargo = "Gerente de TI", Salario = 6600.00m, DataContratacao = new DateOnly(2023, 4, 15), DepartamentoId = 5 },
+                  new Funcionario { Id = 20, Nome = "Vanessa Oliveira", Cargo = "Engenheiro de Software", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 5, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 21, Nome = "Leandro Pereira", Cargo = "Analista de TI", Salario = 4800.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
+                  new Funcionario { Id = 22, Nome = "Fernando Carvalho", Cargo = "Programador Junior", Salario = 2500.00m, DataContratacao = new DateOnly(2021, 11, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 23, Nome = "Gilberto Almeida", Cargo = "Programador Junior", Salario = 2300.00m, DataContratacao = new DateOnly(2023, 3, 13), DepartamentoId = 5 },
+                  new Funcionario { Id = 24, Nome = "Renata Silva", Cargo = "Programador Junior", Salario = 2800.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 5 },
+                  new Funcionario { Id = 25, Nome = "Tamirez Souza", Cargo = "Programador Junior", Salario = 2600.00m, DataContratacao = new DateOnly(2023, 4, 5), DepartamentoId = 5 },
+                  new Funcionario { Id = 26, Nome = "Vanessa Oliveira", Cargo = "Arquiteta de Software", Salario = 5000.00m, DataContratacao = new DateOnly(2023, 5, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 27, Nome = "Leonardo Pereira", Cargo = "Programador Senior", Salario = 5500.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
+                  new Funcionario { Id = 28, Nome = "Maria Benitez", Cargo = "Programador Senior", Salario = 5100.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 29, Nome = "Ricardo Pereira", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 11), DepartamentoId = 5 },
+                  new Funcionario { Id = 30, Nome = "Paula Santos", Cargo = "Programador Senior", Salario = 3200.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
+                  new Funcionario { Id = 31, Nome = "Leonardo Pereira", Cargo = "Programador Senior", Salario = 4650.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
+                  new Funcionario { Id = 32, Nome = "Maria Benitez", Cargo = "Arquiteto de Software", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 33, Nome = "Reinaldo Pedreira", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 34, Nome = "Helena Cintra", Cargo = "Programador Senior", Salario = 4600.00m, DataContratacao = new DateOnly(2022, 4, 20), DepartamentoId = 5 },
+                  new Funcionario { Id = 35, Nome = "Carlos Santos", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2021, 9, 20), DepartamentoId = 5 },
+                  new Funcionario { Id = 36, Nome = "Leonardo Ramirez", Cargo = "Programador Senior", Salario = 4500.00m, DataContratacao = new DateOnly(2023, 8, 1), DepartamentoId = 5 },
+                  new Funcionario { Id = 37, Nome = "Amanda Sanches", Cargo = "Engenheiro de Testes", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 5 },
+                  new Funcionario { Id = 38, Nome = "Rodrigo Pereira", Cargo = "Engenheiro de Testes", Salario = 4800.00m, DataContratacao = new DateOnly(2023, 2, 5), DepartamentoId = 5 },
+                  new Funcionario { Id = 39, Nome = "Alicia Santos", Cargo = "Engenheiro de Testes", Salario = 5300.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 5 },
+                  new Funcionario { Id = 40, Nome = "Paulo Mellado", Cargo = "Arquiteto de Software", Salario = 5800.00m, DataContratacao = new DateOnly(2022, 6, 20), DepartamentoId = 5 },
 
-               // Funcionários de Vendas
-               new Funcionario { Id = 41, Nome = "Marta Carvalho", Cargo = "Gerente de Vendas", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 6 },
-               new Funcionario { Id = 42, Nome = "Ricardo Sanches", Cargo = "Representante de Vendas", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 15), DepartamentoId = 6 },
-               new Funcionario { Id = 43, Nome = "Patrícia Santos", Cargo = "Assistente de Vendas", Salario = 3200.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 6 },
-               new Funcionario { Id = 44, Nome = "Alberto Lima", Cargo = "Representante de Vendas", Salario = 4800.00m, DataContratacao = new DateOnly(2022, 7, 18), DepartamentoId = 6 },
-               new Funcionario { Id = 45, Nome = "Rogério Oliveira", Cargo = "Assistente de Vendas", Salario = 3700.00m, DataContratacao = new DateOnly(2023, 6, 10), DepartamentoId = 6 }
-            );
-
+                  // Funcionários de Vendas
+                  new Funcionario { Id = 41, Nome = "Marta Carvalho", Cargo = "Gerente de Vendas", Salario = 5200.00m, DataContratacao = new DateOnly(2021, 10, 10), DepartamentoId = 6 },
+                  new Funcionario { Id = 42, Nome = "Ricardo Sanches", Cargo = "Representante de Vendas", Salario = 4500.00m, DataContratacao = new DateOnly(2022, 2, 15), DepartamentoId = 6 },
+                  new Funcionario { Id = 43, Nome = "Patrícia Santos", Cargo = "Assistente de Vendas", Salario = 3200.00m, DataContratacao = new DateOnly(2022, 5, 20), DepartamentoId = 6 },
+                  new Funcionario { Id = 44, Nome = "Alberto Lima", Cargo = "Representante de Vendas", Salario = 4800.00m, DataContratacao = new DateOnly(2022, 7, 18), DepartamentoId = 6 },
+                  new Funcionario { Id = 45, Nome = "Rogério Oliveira", Cargo = "Assistente de Vendas", Salario = 3700.00m, DataContratacao = new DateOnly(2023, 6, 10), DepartamentoId = 6 }
+               );
+               
         });
 
         modelBuilder.Entity<Cliente>(entity =>
@@ -145,6 +145,7 @@ public class AppDbContext : DbContext
 
             entity.HasQueryFilter(e => e.Ativo);
 
+            
             entity.HasData(
                   new Cliente { Id = 1, Nome = "Grupo ABroad SA", Email = "abroad@email.com", Telefone = "55-11 9980-0099", Ativo = true },
                   new Cliente { Id = 2, Nome = "Construtora ABC", Email = "abcconstru@email.com", Telefone = "55-31 8957-1022", Ativo = true },
@@ -152,6 +153,7 @@ public class AppDbContext : DbContext
                   new Cliente { Id = 4, Nome = "Tech Innovators Ltda", Email = "innovators@email.com", Telefone = "55-11 9950-9622", Ativo = true },
                   new Cliente { Id = 5, Nome = "Health Solutions Inc.", Email = "healtsolutions@email.com", Telefone = "55-21 9852-9655", Ativo = false }
                 );
+            
         });
 
         modelBuilder.Entity<FuncionarioDetalhe>(entity =>
@@ -185,6 +187,7 @@ public class AppDbContext : DbContext
             entity.Property(e => e.EstadoCivil)
                   .IsRequired();
 
+            /*
             entity.HasData(
                  new FuncionarioDetalhe { Id = 1, FuncionarioId = 1, EnderecoResidencial = "Rua A, 123", DataNascimento = new DateTime(1990, 5, 10), Celular = "999999999", Genero = Genero.Masculino, Foto = "foto1.jpg", EstadoCivil = EstadoCivil.Casado, CPF = "12345678901", Nacionalidade = "Brasileiro", Escolaridade = Escolaridade.PosGraduacao },
                  new FuncionarioDetalhe { Id = 2, FuncionarioId = 2, EnderecoResidencial = "Rua B, 234", DataNascimento = new DateTime(1988, 11, 20), Celular = "988888888", Genero = Genero.Masculino, Foto = "foto2.jpg", EstadoCivil = EstadoCivil.Solteiro, CPF = "23456789012", Nacionalidade = "Brasileiro", Escolaridade = Escolaridade.Medio },
@@ -238,9 +241,10 @@ public class AppDbContext : DbContext
                  new FuncionarioDetalhe { Id = 44, FuncionarioId = 44, EnderecoResidencial = "Rua AJW, 491", DataNascimento = new DateTime(1998, 11, 9), Celular = "988770866", Genero = Genero.Masculino, Foto = "foto44.jpg", EstadoCivil = EstadoCivil.Divorciado, CPF = "99990700001", Nacionalidade = "Brasileiro", Escolaridade = Escolaridade.Medio },
                  new FuncionarioDetalhe { Id = 45, FuncionarioId = 45, EnderecoResidencial = "Rua ADT, 501", DataNascimento = new DateTime(1988, 8, 20), Celular = "977776777", Genero = Genero.Masculino, Foto = "foto45.jpg", EstadoCivil = EstadoCivil.Solteiro, CPF = "00001111111", Nacionalidade = "Brasileiro", Escolaridade = Escolaridade.Tecnico }
             );
-    });
 
-       
+            */
+        });
+
         modelBuilder.Entity<Projeto>(entity =>
         {
             entity.Property(e => e.Nome)
@@ -253,7 +257,7 @@ public class AppDbContext : DbContext
 
             entity.Property(e => e.Orcamento)
                   .HasPrecision(20, 2);
-
+           
             entity.HasData(
                 new Projeto
                 {
@@ -262,7 +266,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto A",
                     Orcamento = 1000000,
                     DataInicio = new DateTime(2023, 1, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 6, 30),
                     ClienteId = 2,
                     Status = StatusProjeto.EmAprovacao
@@ -274,7 +278,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto B",
                     Orcamento = 2000000,
                     DataInicio = new DateTime(2023, 2, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 7, 31),
                     ClienteId = 1,
                     Status = StatusProjeto.EmRevisao
@@ -286,7 +290,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto C",
                     Orcamento = 3000000,
                     DataInicio = new DateTime(2023, 3, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 8, 31),
                     ClienteId = 5,
                     Status = StatusProjeto.Iniciado
@@ -298,7 +302,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto D",
                     Orcamento = 4000000,
                     DataInicio = new DateTime(2023, 4, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 9, 30),
                     ClienteId = 3,
                     Status = StatusProjeto.Iniciado
@@ -310,7 +314,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto E",
                     Orcamento = 5000000,
                     DataInicio = new DateTime(2023, 5, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 10, 31),
                     ClienteId = 4,
                     Status = StatusProjeto.EmAndamento
@@ -322,7 +326,7 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto F",
                     Orcamento = 6000000,
                     DataInicio = new DateTime(2023, 6, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2023, 11, 30),
                     ClienteId = 1,
                     Status = StatusProjeto.Cancelado
@@ -334,11 +338,12 @@ public class AppDbContext : DbContext
                     Descricao = "Descrição do Projeto G",
                     Orcamento = 9000000,
                     DataInicio = new DateTime(2023, 10, 1),
-                    DataAtualizacao = DateTime.Now,
+                    DataAtualizacao = new DateTime(2026, 1, 1),
                     DataFim = new DateTime(2024, 3, 31),
                     ClienteId = 3,
                     Status = StatusProjeto.EmAndamento
                 });
+            
 
             //DateTime é do tipo struct e o enum com numero definidos tambem
             //nesse caso ele é automaticamente definido como not null
@@ -349,6 +354,7 @@ public class AppDbContext : DbContext
         {
             entity.HasKey(e => new { e.FuncionarioId, e.ProjetoId });
 
+            
             entity.HasData(
                 // Projeto A  em aprovacao
                 new FuncionarioProjeto { FuncionarioId = 16, ProjetoId = 1, HorasTrabalhadas = 15 },
@@ -391,9 +397,8 @@ public class AppDbContext : DbContext
                 new FuncionarioProjeto { FuncionarioId = 27, ProjetoId = 7, HorasTrabalhadas = 44 },
                 new FuncionarioProjeto { FuncionarioId = 40, ProjetoId = 7, HorasTrabalhadas = 42 }
             );
-
+            
         });
-
 
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");

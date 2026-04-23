@@ -4,6 +4,6 @@ public static class AppConfig
 {
     public static string GetConnectionString()
     {
-        return "Server=localhost\\SQLEXPRESS;Database=gasoftdatabase;Trusted_Connection=True;TrustServerCertificate=True;";
+        return "Server=localhost\\SQLEXPRESS;Database=gasoftdatabase2;Trusted_Connection=True;TrustServerCertificate=True;";
     }
 }

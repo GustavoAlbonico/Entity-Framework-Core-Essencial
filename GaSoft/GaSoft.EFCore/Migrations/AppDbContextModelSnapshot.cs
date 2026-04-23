@@ -690,638 +690,6 @@ namespace GaSoft.EFCore.Migrations
                         .HasDatabaseName("ix_funcionario_detalhes_funcionario_id");
 
                     b.ToTable("funcionario_detalhes", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CPF = "12345678901",
-                            Celular = "999999999",
-                            DataNascimento = new DateTime(1990, 5, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua A, 123",
-                            Escolaridade = 4,
-                            EstadoCivil = 1,
-                            Foto = "foto1.jpg",
-                            FuncionarioId = 1,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CPF = "23456789012",
-                            Celular = "988888888",
-                            DataNascimento = new DateTime(1988, 11, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua B, 234",
-                            Escolaridade = 1,
-                            EstadoCivil = 0,
-                            Foto = "foto2.jpg",
-                            FuncionarioId = 2,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            CPF = "34567890123",
-                            Celular = "977777777",
-                            DataNascimento = new DateTime(1992, 8, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua C, 345",
-                            Escolaridade = 5,
-                            EstadoCivil = 1,
-                            Foto = "foto3.jpg",
-                            FuncionarioId = 3,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            CPF = "45678901234",
-                            Celular = "966666666",
-                            DataNascimento = new DateTime(1985, 2, 25, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua D, 456",
-                            Escolaridade = 4,
-                            EstadoCivil = 2,
-                            Foto = "foto4.jpg",
-                            FuncionarioId = 4,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            CPF = "56789012345",
-                            Celular = "955555555",
-                            DataNascimento = new DateTime(1994, 3, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua E, 567",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto5.jpg",
-                            FuncionarioId = 5,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            CPF = "67890123456",
-                            Celular = "944444444",
-                            DataNascimento = new DateTime(1989, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua F, 678",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto6.jpg",
-                            FuncionarioId = 6,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            CPF = "78901234567",
-                            Celular = "933333333",
-                            DataNascimento = new DateTime(1991, 7, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua G, 789",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto7.jpg",
-                            FuncionarioId = 7,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            CPF = "89012345678",
-                            Celular = "922222222",
-                            DataNascimento = new DateTime(1986, 4, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua H, 890",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto8.jpg",
-                            FuncionarioId = 8,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            CPF = "90123456789",
-                            Celular = "911111111",
-                            DataNascimento = new DateTime(1993, 9, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua I, 901",
-                            Escolaridade = 4,
-                            EstadoCivil = 1,
-                            Foto = "foto9.jpg",
-                            FuncionarioId = 9,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            CPF = "01234567890",
-                            Celular = "900000000",
-                            DataNascimento = new DateTime(1995, 11, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua J, 101",
-                            Escolaridade = 1,
-                            EstadoCivil = 0,
-                            Foto = "foto10.jpg",
-                            FuncionarioId = 10,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            CPF = "11111100111",
-                            Celular = "988888888",
-                            DataNascimento = new DateTime(1987, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua K, 111",
-                            Escolaridade = 4,
-                            EstadoCivil = 1,
-                            Foto = "foto11.jpg",
-                            FuncionarioId = 11,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            CPF = "22222112222",
-                            Celular = "977777777",
-                            DataNascimento = new DateTime(1990, 2, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua L, 121",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto12.jpg",
-                            FuncionarioId = 12,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            CPF = "33333322333",
-                            Celular = "966666666",
-                            DataNascimento = new DateTime(1991, 3, 3, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua M, 131",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto13.jpg",
-                            FuncionarioId = 13,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            CPF = "44444114444",
-                            Celular = "955555555",
-                            DataNascimento = new DateTime(1992, 4, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua N, 141",
-                            Escolaridade = 4,
-                            EstadoCivil = 0,
-                            Foto = "foto14.jpg",
-                            FuncionarioId = 14,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            CPF = "55555533555",
-                            Celular = "944444444",
-                            DataNascimento = new DateTime(1993, 5, 5, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua O, 151",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto15.jpg",
-                            FuncionarioId = 15,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 16,
-                            CPF = "66666446666",
-                            Celular = "933333333",
-                            DataNascimento = new DateTime(1994, 6, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua P, 161",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto16.jpg",
-                            FuncionarioId = 16,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            CPF = "77777777777",
-                            Celular = "922222222",
-                            DataNascimento = new DateTime(1995, 7, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua Q, 171",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto17.jpg",
-                            FuncionarioId = 17,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 18,
-                            CPF = "87788888888",
-                            Celular = "911111111",
-                            DataNascimento = new DateTime(1996, 8, 8, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua R, 181",
-                            Escolaridade = 2,
-                            EstadoCivil = 2,
-                            Foto = "foto18.jpg",
-                            FuncionarioId = 18,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            CPF = "99999799999",
-                            Celular = "900000000",
-                            DataNascimento = new DateTime(1997, 9, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua S, 191",
-                            Escolaridade = 5,
-                            EstadoCivil = 1,
-                            Foto = "foto19.jpg",
-                            FuncionarioId = 19,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            CPF = "00100000000",
-                            Celular = "988888888",
-                            DataNascimento = new DateTime(1988, 10, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua T, 201",
-                            Escolaridade = 1,
-                            EstadoCivil = 0,
-                            Foto = "foto20.jpg",
-                            FuncionarioId = 20,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            CPF = "11112222202",
-                            Celular = "977777777",
-                            DataNascimento = new DateTime(1989, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua U, 211",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto21.jpg",
-                            FuncionarioId = 21,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            CPF = "22223033333",
-                            Celular = "966666666",
-                            DataNascimento = new DateTime(1990, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua V, 521",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto22.jpg",
-                            FuncionarioId = 22,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            CPF = "33334444044",
-                            Celular = "955555555",
-                            DataNascimento = new DateTime(1991, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua W, 231",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto23.jpg",
-                            FuncionarioId = 23,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            CPF = "44045555555",
-                            Celular = "944444444",
-                            DataNascimento = new DateTime(1992, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua X, 141",
-                            Escolaridade = 4,
-                            EstadoCivil = 2,
-                            Foto = "foto24.jpg",
-                            FuncionarioId = 24,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            CPF = "55556606666",
-                            Celular = "933333333",
-                            DataNascimento = new DateTime(1993, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua Y, 251",
-                            Escolaridade = 2,
-                            EstadoCivil = 1,
-                            Foto = "foto25.jpg",
-                            FuncionarioId = 25,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            CPF = "66667777777",
-                            Celular = "922222222",
-                            DataNascimento = new DateTime(1994, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua Z, 461",
-                            Escolaridade = 5,
-                            EstadoCivil = 1,
-                            Foto = "foto26.jpg",
-                            FuncionarioId = 26,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            CPF = "77778888888",
-                            Celular = "911111111",
-                            DataNascimento = new DateTime(1995, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua AA, 271",
-                            Escolaridade = 1,
-                            EstadoCivil = 3,
-                            Foto = "foto27.jpg",
-                            FuncionarioId = 27,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            CPF = "88889999999",
-                            Celular = "900000000",
-                            DataNascimento = new DateTime(1996, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua AB, 181",
-                            Escolaridade = 4,
-                            EstadoCivil = 0,
-                            Foto = "foto28.jpg",
-                            FuncionarioId = 28,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 29,
-                            CPF = "11182222222",
-                            Celular = "977777777",
-                            DataNascimento = new DateTime(1989, 11, 11, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua UU, 271",
-                            Escolaridade = 4,
-                            EstadoCivil = 1,
-                            Foto = "foto29.jpg",
-                            FuncionarioId = 29,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 30,
-                            CPF = "22229333333",
-                            Celular = "966646666",
-                            DataNascimento = new DateTime(1990, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua VV, 241",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto30.jpg",
-                            FuncionarioId = 30,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 31,
-                            CPF = "33335444444",
-                            Celular = "955557555",
-                            DataNascimento = new DateTime(1991, 1, 13, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua WW, 261",
-                            Escolaridade = 2,
-                            EstadoCivil = 1,
-                            Foto = "foto31.jpg",
-                            FuncionarioId = 31,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 32,
-                            CPF = "44447555555",
-                            Celular = "944448444",
-                            DataNascimento = new DateTime(1992, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua XX, 801",
-                            Escolaridade = 4,
-                            EstadoCivil = 1,
-                            Foto = "foto32.jpg",
-                            FuncionarioId = 32,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 33,
-                            CPF = "55556666966",
-                            Celular = "93333383",
-                            DataNascimento = new DateTime(1993, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua YY, 21",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto33.jpg",
-                            FuncionarioId = 33,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 34,
-                            CPF = "66667477777",
-                            Celular = "922222322",
-                            DataNascimento = new DateTime(1994, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ZZ, 121",
-                            Escolaridade = 5,
-                            EstadoCivil = 0,
-                            Foto = "foto34.jpg",
-                            FuncionarioId = 34,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 35,
-                            CPF = "77778881888",
-                            Celular = "911111011",
-                            DataNascimento = new DateTime(1995, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua AAA, 21",
-                            Escolaridade = 2,
-                            EstadoCivil = 3,
-                            Foto = "foto35.jpg",
-                            FuncionarioId = 35,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 36,
-                            CPF = "88882999999",
-                            Celular = "900001100",
-                            DataNascimento = new DateTime(1996, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ABC, 28",
-                            Escolaridade = 4,
-                            EstadoCivil = 0,
-                            Foto = "foto36.jpg",
-                            FuncionarioId = 36,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            CPF = "44445555555",
-                            Celular = "944440044",
-                            DataNascimento = new DateTime(1992, 2, 14, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua XYC, 24",
-                            Escolaridade = 4,
-                            EstadoCivil = 0,
-                            Foto = "foto37.jpg",
-                            FuncionarioId = 37,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            CPF = "55556666766",
-                            Celular = "933300333",
-                            DataNascimento = new DateTime(1993, 3, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua YED, 21",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto38.jpg",
-                            FuncionarioId = 38,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 39,
-                            CPF = "66367777777",
-                            Celular = "922112222",
-                            DataNascimento = new DateTime(1994, 4, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ZAB, 191",
-                            Escolaridade = 2,
-                            EstadoCivil = 2,
-                            Foto = "foto39.jpg",
-                            FuncionarioId = 39,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 40,
-                            CPF = "77778880888",
-                            Celular = "911001111",
-                            DataNascimento = new DateTime(1995, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua AAT, 601",
-                            Escolaridade = 1,
-                            EstadoCivil = 1,
-                            Foto = "foto40.jpg",
-                            FuncionarioId = 40,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 41,
-                            CPF = "88889199999",
-                            Celular = "900110000",
-                            DataNascimento = new DateTime(1996, 6, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ABR, 721",
-                            Escolaridade = 2,
-                            EstadoCivil = 0,
-                            Foto = "foto41.jpg",
-                            FuncionarioId = 41,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 42,
-                            CPF = "99990000000",
-                            Celular = "988778888",
-                            DataNascimento = new DateTime(1997, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ACY, 210",
-                            Escolaridade = 5,
-                            EstadoCivil = 1,
-                            Foto = "foto42.jpg",
-                            FuncionarioId = 42,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 43,
-                            CPF = "99990000002",
-                            Celular = "988779888",
-                            DataNascimento = new DateTime(1998, 7, 19, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ADX, 39",
-                            Escolaridade = 2,
-                            EstadoCivil = 1,
-                            Foto = "foto43.jpg",
-                            FuncionarioId = 43,
-                            Genero = 1,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 44,
-                            CPF = "99990700001",
-                            Celular = "988770866",
-                            DataNascimento = new DateTime(1998, 11, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua AJW, 491",
-                            Escolaridade = 1,
-                            EstadoCivil = 2,
-                            Foto = "foto44.jpg",
-                            FuncionarioId = 44,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        },
-                        new
-                        {
-                            Id = 45,
-                            CPF = "00001111111",
-                            Celular = "977776777",
-                            DataNascimento = new DateTime(1988, 8, 20, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            EnderecoResidencial = "Rua ADT, 501",
-                            Escolaridade = 2,
-                            EstadoCivil = 0,
-                            Foto = "foto45.jpg",
-                            FuncionarioId = 45,
-                            Genero = 0,
-                            Nacionalidade = "Brasileiro"
-                        });
                 });
 
             modelBuilder.Entity("GaSoft.Domain.Entities.FuncionarioProjeto", b =>
@@ -1570,7 +938,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 1,
                             ClienteId = 2,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 552, DateTimeKind.Local).AddTicks(4210),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 6, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto A",
@@ -1582,7 +950,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 2,
                             ClienteId = 1,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7851),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 2, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto B",
@@ -1594,7 +962,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 3,
                             ClienteId = 5,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7872),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 3, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto C",
@@ -1606,7 +974,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 4,
                             ClienteId = 3,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7875),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 9, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 4, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto D",
@@ -1618,7 +986,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 5,
                             ClienteId = 4,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7877),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 10, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 5, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto E",
@@ -1630,7 +998,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 6,
                             ClienteId = 1,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7878),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2023, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 6, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto F",
@@ -1642,7 +1010,7 @@ namespace GaSoft.EFCore.Migrations
                         {
                             Id = 7,
                             ClienteId = 3,
-                            DataAtualizacao = new DateTime(2026, 4, 20, 21, 44, 9, 565, DateTimeKind.Local).AddTicks(7881),
+                            DataAtualizacao = new DateTime(2026, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataFim = new DateTime(2024, 3, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DataInicio = new DateTime(2023, 10, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Descricao = "Descrição do Projeto G",
@@ -1655,7 +1023,7 @@ namespace GaSoft.EFCore.Migrations
             modelBuilder.Entity("GaSoft.Domain.Entities.Funcionario", b =>
                 {
                     b.HasOne("GaSoft.Domain.Entities.Departamento", "Departamento")
-                        .WithMany()
+                        .WithMany("Funcionarios")
                         .HasForeignKey("DepartamentoId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired()
@@ -1712,6 +1080,11 @@ namespace GaSoft.EFCore.Migrations
             modelBuilder.Entity("GaSoft.Domain.Entities.Cliente", b =>
                 {
                     b.Navigation("Projetos");
+                });
+
+            modelBuilder.Entity("GaSoft.Domain.Entities.Departamento", b =>
+                {
+                    b.Navigation("Funcionarios");
                 });
 
             modelBuilder.Entity("GaSoft.Domain.Entities.Funcionario", b =>

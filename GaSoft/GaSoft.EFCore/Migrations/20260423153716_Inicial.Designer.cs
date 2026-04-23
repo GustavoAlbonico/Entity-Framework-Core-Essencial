@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace GaSoft.EFCore.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20260420182341_Inicial")]
+    [Migration("20260423153716_Inicial")]
     partial class Inicial
     {
         /// <inheritdoc />
@@ -49,44 +49,6 @@ namespace GaSoft.EFCore.Migrations
                         .HasName("pk_departamentos");
 
                     b.ToTable("departamentos", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Descricao = "Gestão das finanças",
-                            Nome = "Financeiro"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Descricao = "Promoção de produtos",
-                            Nome = "Marketing"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Descricao = "Recursos Humanos",
-                            Nome = "RH"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Descricao = "Atendimento ao cliente",
-                            Nome = "Suporte"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Descricao = "Tecnologia da Informação",
-                            Nome = "TI"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Descricao = "Gestão de Vendas",
-                            Nome = "Vendas"
-                        });
                 });
 #pragma warning restore 612, 618
         }

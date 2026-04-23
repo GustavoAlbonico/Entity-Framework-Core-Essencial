@@ -2,8 +2,6 @@
 
 #nullable disable
 
-#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
-
 namespace GaSoft.EFCore.Migrations
 {
     /// <inheritdoc />
@@ -24,19 +22,6 @@ namespace GaSoft.EFCore.Migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("pk_departamentos", x => x.id);
-                });
-
-            migrationBuilder.InsertData(
-                table: "departamentos",
-                columns: new[] { "id", "descricao", "nome" },
-                values: new object[,]
-                {
-                    { 1, "Gestão das finanças", "Financeiro" },
-                    { 2, "Promoção de produtos", "Marketing" },
-                    { 3, "Recursos Humanos", "RH" },
-                    { 4, "Atendimento ao cliente", "Suporte" },
-                    { 5, "Tecnologia da Informação", "TI" },
-                    { 6, "Gestão de Vendas", "Vendas" }
                 });
         }
 
