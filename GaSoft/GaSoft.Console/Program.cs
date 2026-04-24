@@ -456,4 +456,15 @@ void Migrations()
  // --verbose -> debug
 }
 
+void Scaffold() {
+   //gerar entidades atraves do banco de dados
+
+   //dotnet ef dbcontext scaffold "Server=localhost\SQLEXPRESS;Database=gasoftdatabase2;Trusted_Connection=True;TrustServerCertificate=True;" Microsoft.EntityFrameworkCore.SqlServer -o MinhasEntidades -c MeuArquivoContext -p GaSoft.EFCore
+}
+
+void MigrationsProducao(){
+    //utilizar dotnet ef migrations script --idempotent --output migrations-prod.sql --project GaSoft.EFCore -context AppDbContext
+    //vai gerarl um script sql e não ser necessário passar permissões de servidor
+}
+
 */
