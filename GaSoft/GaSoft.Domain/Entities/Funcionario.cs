@@ -13,6 +13,8 @@ public  class Funcionario
     public Departamento? Departamento { get; set; }
     public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
 
-    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
+    public ICollection<Projeto> Projetos { get; set; } = new List<Projeto>(); //forma 1 de juncao
+
+    //public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
 
 }

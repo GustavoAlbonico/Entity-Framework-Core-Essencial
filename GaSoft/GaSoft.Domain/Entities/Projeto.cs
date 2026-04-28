@@ -14,8 +14,9 @@ public class Projeto
     public DateTime DataFim {  get; set; }
 
     public StatusProjeto Status {  get; set; }
+    public ICollection<Funcionario> Funcionarios { get; set; } = new List<Funcionario>(); //forma 1 de juncao
 
-    public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
+    //public ICollection<FuncionarioProjeto> FuncionariosProjetos { get; set; } = new List<FuncionarioProjeto>();
 
     public int ClienteId { get; set; }
     public Cliente? Cliente { get; set; }
