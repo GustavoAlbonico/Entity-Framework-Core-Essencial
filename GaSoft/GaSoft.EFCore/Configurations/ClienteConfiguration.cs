@@ -28,6 +28,11 @@ public class ClienteConfiguration : IEntityTypeConfiguration<Cliente>
 
         entity.HasQueryFilter(e => e.Ativo);
 
+        //HasMany/WithOne
+        entity.HasMany(p => p.Projetos)
+              .WithOne(c => c.Cliente)
+              .HasForeignKey(p => p.ClienteId)
+              .OnDelete(DeleteBehavior.Cascade); // se deletar cliente todos os relacionados vao ser excluidos
 
         entity.HasData(
               new Cliente { Id = 1, Nome = "Grupo ABroad SA", Email = "abroad@email.com", Telefone = "55-11 9980-0099", Ativo = true },

@@ -16,6 +16,12 @@ public class DepartamentoConfiguration:IEntityTypeConfiguration<Departamento>
               .HasMaxLength(200)
               .IsRequired();
 
+        //HasMany/WithOne
+        //entity.HasMany(f => f.Funcionarios)
+        //      .WithOne(d => d.Departamento)
+        //      .HasForeignKey(d => d.DepartamentoId)
+        //      .OnDelete(DeleteBehavior.Restrict);
+
         entity.HasData(
               new Departamento { Id = 1, Nome = "Financeiro", Descricao = "Gestão das finanças" },
               new Departamento { Id = 2, Nome = "Marketing", Descricao = "Promoção de produtos" },

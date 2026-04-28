@@ -19,6 +19,12 @@ public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
         entity.Property(e => e.Salario)
               .HasPrecision(10, 2);
 
+        //HasOne/WithMany
+        entity.HasOne(f => f.Departamento)
+              .WithMany(f => f.Funcionarios)
+              .HasForeignKey(f => f.DepartamentoId)
+              .OnDelete(DeleteBehavior.Restrict); //Se possuir departamento ao tentar excluir funcionario não vai deixar
+
         entity.HasData(
               // Funcionários do Financeiro
               new Funcionario { Id = 1, Nome = "João da Silva", Cargo = "Gerente de Finanças", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 1, 15), DepartamentoId = 1 },
