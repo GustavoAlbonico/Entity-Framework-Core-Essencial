@@ -8,7 +8,18 @@ public class FuncionarioProjetoConfiguration : IEntityTypeConfiguration<Funciona
 {
     public void Configure(EntityTypeBuilder<FuncionarioProjeto> entity)
     {
+        //CHAVE COMPOSTA
         entity.HasKey(e => new { e.FuncionarioId, e.ProjetoId });
+
+        entity.HasOne(fp => fp.Funcionario)
+              .WithMany(fp => fp.FuncionariosProjetos)
+              .HasForeignKey(fp => fp.FuncionarioId);
+
+        entity.HasOne(fp => fp.Projeto)
+              .WithMany(fp => fp.FuncionariosProjetos)
+              .HasForeignKey(fp => fp.ProjetoId);
+
+        entity.ToTable("FuncionarioProjetos");
 
         entity.HasData(
             // Projeto A  em aprovacao

@@ -1,5 +1,6 @@
 ﻿namespace GaSoft.Domain.Entities;
 
+//utilizar essa forma quando é necessario adicionar mais campos como 'horas trabalhadas'.
 public class FuncionarioProjeto
 {
     public int FuncionarioId { get; set; }
