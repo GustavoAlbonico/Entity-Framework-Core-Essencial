@@ -32,10 +32,20 @@ public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
               .IsRequired() //relacionamento obrigatório
               .OnDelete(DeleteBehavior.Cascade);
 
-        //HasMany/WithMany
+        //HasMany/WithMany FORMA SIMPLIFICADA
+        //entity.HasMany(p => p.Projetos)
+        //      .WithMany(p => p.Funcionarios)
+        //      .UsingEntity(t => t.ToTable("FuncionariosProjetos")); //define o nome da tabela de junção
+
         entity.HasMany(p => p.Projetos)
-              .WithMany(p => p.Funcionarios)
-              .UsingEntity(t => t.ToTable("FuncionariosProjetos")); //define o nome da tabela de junção
+             .WithMany(p => p.Funcionarios)
+             .UsingEntity<Dictionary<string, object>>(
+                "FuncionariosProjetos", //entidade de juncao
+                j => j.HasOne<Projeto>().WithMany().HasForeignKey("ProjetoId"),
+                j => j.HasOne<Funcionario>().WithMany().HasForeignKey("FuncionarioId"),
+                j => j.ToTable("FuncionariosProjetos") //nome da tabela de juncao
+             );
+               
 
         entity.HasData(
               // Funcionários do Financeiro
