@@ -25,6 +25,13 @@ public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
               .HasForeignKey(f => f.DepartamentoId)
               .OnDelete(DeleteBehavior.Restrict); //Se possuir departamento ao tentar excluir funcionario não vai deixar
 
+        //HasOne/WithOne
+        entity.HasOne(p => p.FuncionarioDetalhe)
+              .WithOne(p => p.Funcionario)
+              .HasForeignKey<FuncionarioDetalhe>(p => p.FuncionarioId)
+              .IsRequired() //relacionamento obrigatório
+              .OnDelete(DeleteBehavior.Cascade);
+
         entity.HasData(
               // Funcionários do Financeiro
               new Funcionario { Id = 1, Nome = "João da Silva", Cargo = "Gerente de Finanças", Salario = 5250.00m, DataContratacao = new DateOnly(2023, 1, 15), DepartamentoId = 1 },
