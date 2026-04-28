@@ -467,4 +467,29 @@ void MigrationsProducao(){
     //vai gerarl um script sql e não ser necessário passar permissões de servidor
 }
 
+void OnDeleteComportamentos() {
+
+//Cascade
+
+//Ao excluir a entidade principal, as entidades dependentes também são excluídas automaticamente.
+//(É o padrão quando a FK não é nula, int por exemplo)
+
+//Restrict
+
+//Impede a exclusão da entidade principal se houver dependentes relacionados. Deve-se excluir os dependentes manualmente primeiro.
+
+//SetNull
+
+//Ao excluir a entidade principal, a chave estrangeira dos dependentes é definida como null (somente se a FK permitir null).
+//(É o padrão quando a FK é nula (int?))
+
+//NoAction
+
+//Sem ação no banco de dados. O EF Core não faz nada automaticamente. O comportamento depende da configuração do banco de dados.
+
+//ClientSetNull
+
+//Semelhante ao SetNull, mas o EF Core define a FK como null apenas no cliente (em memória). O banco de dados não aplica a lógica.
+    
+}
 */
