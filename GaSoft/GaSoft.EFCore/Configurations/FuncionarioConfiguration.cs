@@ -45,7 +45,27 @@ public class FuncionarioConfiguration : IEntityTypeConfiguration<Funcionario>
         //        j => j.HasOne<Funcionario>().WithMany().HasForeignKey("FuncionarioId"),
         //        j => j.ToTable("FuncionariosProjetos") //nome da tabela de juncao
         //     );
-               
+
+        /*
+        // Cenário 1: Criando um índice simples na coluna 'Nome' para acelerar buscas.
+        // Por padrão, o índice não é único.
+
+        entity.HasIndex(f => f.Nome);
+
+        // Cenário 2: Criando um índice composto e único.
+        // Isso garante que não haverá dois registros com a mesma combinação de Nome e CPF.
+        // Também acelera consultas que filtram por ambos os campos simultaneamente.
+
+        entity.HasIndex(f => new { f.Nome, f.Salario })
+        .IsUnique();
+
+        // Você também pode dar um nome customizado ao seu índice no banco de dados.
+
+        entity.HasIndex(f => f.DataContratacao)
+        .HasDatabaseName("IX_Funcionario_DataContratacao");
+        */
+
+
 
         entity.HasData(
               // Funcionários do Financeiro
