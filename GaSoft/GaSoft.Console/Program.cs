@@ -4,6 +4,7 @@ using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
+using System.Threading.Tasks;
 
 using AppDbContext _context = new AppDbContext();
 
@@ -492,4 +493,52 @@ void OnDeleteComportamentos() {
 //Semelhante ao SetNull, mas o EF Core define a FK como null apenas no cliente (em memória). O banco de dados não aplica a lógica.
     
 }
+
 */
+
+void fromSqlRaw(AppDbContext context)
+{
+    var departamentoId = 1;
+
+    var funcionarios = context.Funcionarios
+                       .FromSqlRaw("SELECT * FROM Funcionarios WHERE DepartamentoId = {0}", departamentoId)
+                       .Include(f => f.Departamento)
+                       .ToList();
+}
+
+void fromSql(AppDbContext context)
+{
+    var departamentoId = 1;
+
+    var funcionarios = context.Funcionarios
+                       .FromSql($"SELECT * FROM Funcionarios WHERE DepartamentoId = {departamentoId}")
+                       .Include(f => f.Departamento)
+                       .ToList();
+}
+
+async Task sqlQuery(AppDbContext context)
+{
+    var funcionarios = context.Database
+                       .SqlQuery<FuncionarioSalarioDTO>
+                       ($@"
+                            SELECT f.Nome, f.Salario, f.Cargo, d.Nome as Departamento
+                            FROM Funcionarios f
+                            INNER JOIN Departamentos d ON f.DepartamentoId = d.DepartamentoId
+                            ORDER BY f.Salario DESC
+                       ").ToList();
+
+    var departamentoId = 3;
+
+    var total = await context.Database
+                      .SqlQuery<decimal?>(
+                       $"SELECT SUM(Salario) As Value FROM Funcionarios WHERE DepartamentoId = {departamentoId}"
+                       )
+                      .FirstOrDefaultAsync();
+}
+
+public record FuncionarioSalarioDTO(
+  string Nome,
+  decimal Salario,
+  string Cargo,
+  string Departamento
+);
