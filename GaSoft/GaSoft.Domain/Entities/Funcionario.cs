@@ -10,7 +10,7 @@ public  class Funcionario
     public decimal Salario { get; set; }
     public DateOnly DataContratacao { get; set; }
     public int DepartamentoId { get; set; }
-   // public Departamento? Departamento { get; set; }
+    public Departamento? Departamento { get; set; }
     public FuncionarioDetalhe? FuncionarioDetalhe { get; set; }
 
     //public ICollection<Projeto> Projetos { get; set; } = new List<Projeto>(); //forma 1 e 2 de juncao
