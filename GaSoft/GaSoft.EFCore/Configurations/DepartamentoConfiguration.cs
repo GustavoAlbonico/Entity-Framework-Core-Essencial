@@ -16,6 +16,12 @@ public class DepartamentoConfiguration:IEntityTypeConfiguration<Departamento>
               .HasMaxLength(200)
               .IsRequired();
 
+        //RELACIONAMENTO UNIDIRECIONAL
+        entity.HasMany(d => d.Funcionarios)  // ...e cada Funcionário TEM UM Departamento, mas não temos uma
+              .WithOne()  // propriedade de navegação para especificar. Por isso, WithOne() é vazio.
+              .HasForeignKey(f => f.DepartamentoId) // Ainda precisamos dizer qual é a chave estrangeira.
+              .OnDelete(DeleteBehavior.Restrict);
+
         //HasMany/WithOne
         //entity.HasMany(f => f.Funcionarios)
         //      .WithOne(d => d.Departamento)
