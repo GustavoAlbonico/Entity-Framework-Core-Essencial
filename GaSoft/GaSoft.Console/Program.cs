@@ -2,6 +2,7 @@
 using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
 using System.Threading.Tasks;
@@ -536,9 +537,61 @@ async Task sqlQuery(AppDbContext context)
                       .FirstOrDefaultAsync();
 }
 
+
+async Task storedProcedure(AppDbContext context)
+{
+    //CREATE PROCEDURE usp_ListarFuncionariosPorDepartamentos
+    //    @DepartamentoId INT
+    //AS
+    //BEGIN
+    //    SELECT Nome, Cargo, Salario
+    //    FROM Funcionarios
+    //    WHERE DepartamentoId = DepartamentoId
+    //END
+
+    var departamentoId = 2;
+    var resultado = await context.Database
+                     .SqlQuery<FuncionarioDTO>(
+                      $"EXEC usp_ListarFuncionariosPorDepartamento {departamentoId}"
+                      ).ToListAsync();
+}
+
+async Task storedProcedureAlterada(AppDbContext context)
+{
+    //ALTER PROCEDURE usp_ListarFuncionariosPorDepartamentos
+    //    @DepartamentoId INT
+    //AS
+    //BEGIN
+    //    SELECT Id, Nome, Cargo, Salario, DataContratacao, DepartamentoId
+    //    FROM Funcionarios
+    //    WHERE DepartamentoId = DepartamentoId
+    //END
+
+    var departamentoId = 2;
+
+    var resultado = await context.Funcionarios
+        .FromSqlRaw("EXEC usp_ListarFuncionariosPorDepartamento {0}", departamentoId)
+        .ToListAsync();
+
+    var resultado2 = await context.Funcionarios
+        .FromSqlRaw("EXEC usp_ListarFuncionariosPorDepartamento @DepartamentoId",
+        new SqlParameter("@DepartamentoId", departamentoId)) //MAIS SEGURO
+        .ToListAsync();
+
+    var resultado3 = await context.Funcionarios
+        .FromSql($"EXEC usp_ListarFuncionariosPorDepartamento {departamentoId}")
+        .ToListAsync();
+}
+
 public record FuncionarioSalarioDTO(
   string Nome,
   decimal Salario,
   string Cargo,
   string Departamento
+);
+
+public record FuncionarioDTO (
+    string Nome,
+    decimal Salario,
+    string Cargo
 );
