@@ -583,6 +583,54 @@ async Task storedProcedureAlterada(AppDbContext context)
         .ToListAsync();
 }
 
+async Task storedProcedureMigrations(AppDbContext context)
+{
+    /*
+     * Fazer primeiro no banco de dados e testar para depois aplicar em migrations
+     * 
+       CREATE PROCEDURE usp_FuncionariosContratadosPorPeriodo
+           @DataInicio DATE,
+           @DataFim DATE
+       AS
+       BEGIN
+           SELECT f.FuncionarioId,f.Nome,f.Cargo,f.Salario,f.DataContratacao,f.DepartamentoId
+           FROM Funcionarios f
+           WHERE f.DataContratacao BETWEEN @DataInicio AND @DataFim
+           ORDER BY f.DataContratacao;
+       END;
+
+       depois de criada a migration:
+
+       dotnet ef database update Cria_SP_FuncisContratadosPorPeriodo -p GaSoft.EFCore -c AppDbContext
+    */
+
+    //não precisa usar EXEC
+    var dataInicio = new DateOnly(2023, 01, 01);
+    var dataFim = new DateOnly(2023, 12, 31);
+
+    //FromSqlRaw
+    var funcionarios1 = await context.Funcionarios
+        .FromSqlRaw("usp_FuncionariosContratadosPorPeriodo {0}, {1}",dataInicio, dataFim)
+        .ToListAsync();
+
+    //FromSqlRaw com com sqlParameter
+    var parametros = new[]
+    {
+        new SqlParameter("@DataInicio",dataInicio),
+        new SqlParameter("@DataFim",dataFim)
+    };
+
+    var funcionarios2 = await context.Funcionarios
+        .FromSqlRaw("usp_FuncionariosContratadosPorPeriodo @DataInicio @DataFim",parametros)
+        .ToListAsync();
+
+    //FromSql
+    var funcionarios3 = await context.Funcionarios
+        .FromSql($"usp_FuncionariosContratadosPorPeriodo {dataInicio}, {dataFim}")
+        .ToListAsync();
+
+}
+
 public record FuncionarioSalarioDTO(
   string Nome,
   decimal Salario,
