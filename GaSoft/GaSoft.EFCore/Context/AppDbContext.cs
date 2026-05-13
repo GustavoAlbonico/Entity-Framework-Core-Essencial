@@ -13,6 +13,7 @@ public class AppDbContext : DbContext
     public DbSet<Projeto> Projetos { get; set; }
     public DbSet<FuncionarioProjeto> FuncionariosProjetos { get; set; }
     public DbSet<Cliente> Clientes { get; set; }
+    public DbSet<FuncionarioDepartamentoView> FuncionariosDepartamentoView { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {

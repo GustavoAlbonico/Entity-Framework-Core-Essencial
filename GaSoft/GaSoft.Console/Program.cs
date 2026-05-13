@@ -2,6 +2,7 @@
 using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
+using GaSoft.EFCore.MinhasEntidades;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
@@ -497,7 +498,7 @@ void OnDeleteComportamentos() {
 
 */
 
-void fromSqlRaw(AppDbContext context)
+void FromSqlRaw(AppDbContext context)
 {
     var departamentoId = 1;
 
@@ -507,7 +508,7 @@ void fromSqlRaw(AppDbContext context)
                        .ToList();
 }
 
-void fromSql(AppDbContext context)
+void FromSql(AppDbContext context)
 {
     var departamentoId = 1;
 
@@ -517,7 +518,7 @@ void fromSql(AppDbContext context)
                        .ToList();
 }
 
-async Task sqlQuery(AppDbContext context)
+async Task SqlQuery(AppDbContext context)
 {
     var funcionarios = context.Database
                        .SqlQuery<FuncionarioSalarioDTO>
@@ -538,7 +539,7 @@ async Task sqlQuery(AppDbContext context)
 }
 
 
-async Task storedProcedure(AppDbContext context)
+async Task StoredProcedure(AppDbContext context)
 {
     //CREATE PROCEDURE usp_ListarFuncionariosPorDepartamentos
     //    @DepartamentoId INT
@@ -556,7 +557,7 @@ async Task storedProcedure(AppDbContext context)
                       ).ToListAsync();
 }
 
-async Task storedProcedureAlterada(AppDbContext context)
+async Task StoredProcedureAlterada(AppDbContext context)
 {
     //ALTER PROCEDURE usp_ListarFuncionariosPorDepartamentos
     //    @DepartamentoId INT
@@ -583,7 +584,7 @@ async Task storedProcedureAlterada(AppDbContext context)
         .ToListAsync();
 }
 
-async Task storedProcedureMigrations(AppDbContext context)
+async Task StoredProcedureMigrations(AppDbContext context)
 {
     /*
      * Fazer primeiro no banco de dados e testar para depois aplicar em migrations
@@ -631,6 +632,46 @@ async Task storedProcedureMigrations(AppDbContext context)
 
 }
 
+async Task Views(AppDbContext context)
+{
+    //CREATE VIEW view_FuncionariosDepartamentos AS
+    //    SELECT
+    //        f.FuncionarioId, f.Nome AS NomeFuncionario,
+    //        f.Cargo, f.Salario, f.DataContratacao, d.DepartamentoId,
+    //        d.Nome AS NomeDepartamento, d.Descricao AS DescricaoDepartamento
+    //    FROM
+    //        Funcionarios f
+    //    INNER JOIN
+    //        Departamentos d ON f.DepartamentoId = d.DepartamentoId;
+    //dotnet ef migrations add Cria_VIEW_FuncisDepartamentos -p GaSoft.EFCore -c AppDbContext
+
+    var resultado = await context.FuncionariosDepartamentoView
+                                 .OrderBy(f => f.Salario)
+                                 .ToListAsync();
+
+    resultado = await context.FuncionariosDepartamentoView
+                              .FromSqlRaw("SELECT * FROM view_FuncionariosDepartamentos")
+                              .Where(f => f.NomeDepartamento == "TI")
+                              .OrderBy(f => f.NomeFuncionario)
+                              .ToListAsync();
+
+    resultado = await context.Set<FuncionarioDepartamentoView>() //DBset
+                              .FromSqlRaw("SELECT * FROM view_FuncionariosDepartamentos")
+                              .Where(f => f.NomeDepartamento == "TI")
+                              .OrderBy(f => f.NomeFuncionario)
+                              .ToListAsync();
+
+    //resultado = await context.Database
+    //                    .SqlQuery<FuncionarioDepartamentoDto>(
+    //                    $@"
+    //                        SELECT NomeFuncionario, Cargo, NomeDepartamento, Salario
+    //                        FROM view_FuncionariosDepartamentos
+    //                        ORDER BY Salario DESC"
+    //                    ).ToListAsync();
+
+
+}
+
 public record FuncionarioSalarioDTO(
   string Nome,
   decimal Salario,
@@ -642,4 +683,11 @@ public record FuncionarioDTO (
     string Nome,
     decimal Salario,
     string Cargo
+);
+
+public record FuncionarioDepartamentoDto(
+    string NomeFuncionario,
+    string Cargo,
+    string NomeDepartamento,
+    decimal Salario
 );
