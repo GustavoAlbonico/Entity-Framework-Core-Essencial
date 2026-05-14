@@ -2,6 +2,7 @@
 using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
 using GaSoft.EFCore.Context;
+using GaSoft.EFCore.FuncoesSQL;
 using GaSoft.EFCore.MinhasEntidades;
 using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
@@ -670,6 +671,28 @@ async Task Views(AppDbContext context)
     //                    ).ToListAsync();
 
 
+}
+
+async Task FuncoesSQL(AppDbContext context)
+{
+    /*
+     CREATE FUNCTION dbo.CalcularAnosDeServico(@DataContratacao DATE)
+     RETURNS INT
+     AS
+     BEGIN
+        RETURN DATEDIFF(YEAR, @DataContratacao, GETDATE())
+     END
+     */
+
+    var funcionarios = await context.Funcionarios
+                        .Select(f => new
+                        {
+                            f.Nome,
+                            f.DataContratacao,
+                            AnosDeServico = FuncoesSql.CalcularAnosDeServico(f.DataContratacao)
+                        })
+                        .OrderByDescending(f => f.AnosDeServico)
+                        .ToListAsync();
 }
 
 public record FuncionarioSalarioDTO(

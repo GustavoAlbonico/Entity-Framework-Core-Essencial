@@ -1,5 +1,6 @@
 ﻿using GaSoft.Domain.Entities;
 using GaSoft.Domain.Entities.Enum;
+using GaSoft.EFCore.FuncoesSQL;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
 
@@ -30,6 +31,10 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+
+        modelBuilder.HasDbFunction(() => FuncoesSql.CalcularAnosDeServico(default))
+                    .HasName("CalcularAnosDeServico")
+                    .HasSchema("dbo");
 
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");
