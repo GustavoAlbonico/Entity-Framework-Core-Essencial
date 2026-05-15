@@ -673,7 +673,7 @@ async Task Views(AppDbContext context)
 
 }
 
-async Task FuncoesSQL(AppDbContext context)
+async Task FuncoesEscalares(AppDbContext context)
 {
     /*
      CREATE FUNCTION dbo.CalcularAnosDeServico(@DataContratacao DATE)
@@ -693,6 +693,29 @@ async Task FuncoesSQL(AppDbContext context)
                         })
                         .OrderByDescending(f => f.AnosDeServico)
                         .ToListAsync();
+}
+
+async Task FuncoesTabela(AppDbContext context)
+{
+    /* 
+        CREATE FUNCTION dbo.ProjetosAtivosApos (@dataInicio DATE)
+        RETURNS TABLE
+        AS
+        RETURN
+        (
+            SELECT ProjetoId, Nome, Descricao, Orcamento, DataInicio, DataAtualizacao, DataFim, Status, ClienteId
+            FROM Projetos
+            WHERE DataInicio > @dataInicio
+              AND Status IN (10,20) -- Iniciado e EmAndamento
+        );
+     */
+
+
+    var dataConsulta = new DateTime(2024, 01, 01);
+
+    var projetos = await context.ProjetosAtivosApos(dataConsulta)
+                                .OrderBy(f => f.DataInicio)
+                                .ToListAsync();
 }
 
 public record FuncionarioSalarioDTO(

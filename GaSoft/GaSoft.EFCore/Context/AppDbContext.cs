@@ -16,6 +16,9 @@ public class AppDbContext : DbContext
     public DbSet<Cliente> Clientes { get; set; }
     public DbSet<FuncionarioDepartamentoView> FuncionariosDepartamentoView { get; set; }
 
+    public IQueryable<Projeto> ProjetosAtivosApos(DateTime dataInicio)
+                        => FromExpression(() => ProjetosAtivosApos(dataInicio));
+
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
         optionsBuilder.UseSqlServer(AppConfig.GetConnectionString())
@@ -35,6 +38,12 @@ public class AppDbContext : DbContext
         modelBuilder.HasDbFunction(() => FuncoesSql.CalcularAnosDeServico(default))
                     .HasName("CalcularAnosDeServico")
                     .HasSchema("dbo");
+
+        modelBuilder
+            .HasDbFunction(typeof(AppDbContext)
+            .GetMethod(nameof(ProjetosAtivosApos), new[] { typeof(DateTime) })!)
+            .HasName("ProjetosAtivosApos")
+            .HasSchema("dbo");
 
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");
