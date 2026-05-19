@@ -21,6 +21,9 @@ public class ProjetoConfiguration : IEntityTypeConfiguration<Projeto>
         entity.Property(e => e.Orcamento)
               .HasPrecision(20, 2);
 
+        entity.Property(e => e.DuracaoEmDias)
+            .HasComputedColumnSql("DATEDIFF(day, DataInicio, DataFim)", stored: true);
+
         entity.HasData(
             new Projeto
             {

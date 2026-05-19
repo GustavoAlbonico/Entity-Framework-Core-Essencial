@@ -22,4 +22,7 @@ public class Projeto
     public Cliente? Cliente { get; set; }
 
     public int NumeroOrdemServico { get; set; }
+
+    // Propriedade da coluna calculada
+    public int DuracaoEmDias { get; private set; }
 }

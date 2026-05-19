@@ -724,7 +724,7 @@ async Task Sequences(AppDbContext context)
 
     for(int i = 0; i < 3; i++)
     {
-        var projeto = new Projeto
+        var projeto = new GaSoft.Domain.Entities.Projeto
         {
             Nome = $"Projeto Alpha {i + 1}", 
             Descricao = $"Descrição detalhada do Projeto Alpha {i + 1}",
@@ -741,6 +741,20 @@ async Task Sequences(AppDbContext context)
 
     await context.SaveChangesAsync();
 }
+
+async Task ColunasCalculadas(AppDbContext context)
+{
+    var projetos = await context.Projetos.OrderBy(p => p.DataInicio).ToListAsync();
+
+    foreach (var projeto in projetos)
+    {
+        Console.WriteLine($"ID: {projeto.Id}, Nome: {projeto.Nome}, " +
+                          $"Início: {projeto.DataInicio:dd/MM/yyyy}, " +
+                          $"Fim: {projeto.DataFim:dd/MM/yyyy}, " +
+                          $"Duração Calculada: {projeto.DuracaoEmDias} dias");
+    }
+}
+
 public record FuncionarioSalarioDTO(
   string Nome,
   decimal Salario,
