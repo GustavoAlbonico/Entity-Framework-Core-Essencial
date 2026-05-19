@@ -45,6 +45,17 @@ public class AppDbContext : DbContext
             .HasName("ProjetosAtivosApos")
             .HasSchema("dbo");
 
+        modelBuilder.HasSequence<int>("NumeroOSSequence")
+                .StartsAt(2001)
+                .IncrementsBy(10)
+                .HasMin(2001)
+                .HasMax(999999);
+        //.IsCyclic();
+
+        modelBuilder.Entity<Projeto>()
+            .Property(p => p.NumeroOrdemServico)
+            .HasDefaultValueSql("NEXT VALUE FOR NumeroOSSequence");
+
         //modelBuilder.HasDefaultSchema("gasoft");
         //            entity.ToTable("Setores");
         //entity.Property(e => e.dataCriacao)

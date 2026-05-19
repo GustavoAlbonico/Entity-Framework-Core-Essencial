@@ -718,6 +718,29 @@ async Task FuncoesTabela(AppDbContext context)
                                 .ToListAsync();
 }
 
+async Task Sequences(AppDbContext context)
+{
+   //dotnet ef migrations add IncluiNumeroOrdemServicoProjeto -p GaSoft.EFCore -c AppDbContext
+
+    for(int i = 0; i < 3; i++)
+    {
+        var projeto = new Projeto
+        {
+            Nome = $"Projeto Alpha {i + 1}", 
+            Descricao = $"Descrição detalhada do Projeto Alpha {i + 1}",
+            Orcamento = 50000.00m + (i * 1000),
+            DataInicio = DateTime.Now.AddDays(i * 30),
+            DataAtualizacao = DateTime.Now.AddDays(i * 30),
+            DataFim = DateTime.Now.AddDays(i * 30 * 120),
+            Status = StatusProjeto.Iniciado,
+            ClienteId = 5
+        };
+
+        context.Projetos.Add(projeto);
+    }
+
+    await context.SaveChangesAsync();
+}
 public record FuncionarioSalarioDTO(
   string Nome,
   decimal Salario,

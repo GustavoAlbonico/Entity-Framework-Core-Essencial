@@ -20,4 +20,6 @@ public class Projeto
 
     public int ClienteId { get; set; }
     public Cliente? Cliente { get; set; }
+
+    public int NumeroOrdemServico { get; set; }
 }
